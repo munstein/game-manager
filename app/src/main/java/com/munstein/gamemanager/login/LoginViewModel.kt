@@ -1,4 +1,7 @@
 package com.munstein.gamemanager.login
 
-class LoginViewModel {
+import com.munstein.gamemanager.base.BaseViewModel
+
+class LoginViewModel : BaseViewModel() {
+
 }
