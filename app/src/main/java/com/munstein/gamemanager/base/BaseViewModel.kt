@@ -1,4 +1,5 @@
 package com.munstein.gamemanager.base
 
-abstract class BaseViewModel {
-}
+import android.arch.lifecycle.ViewModel
+
+abstract class BaseViewModel : ViewModel()
