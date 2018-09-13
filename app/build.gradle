@@ -62,7 +62,9 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0-rc01'
     implementation "com.orhanobut:hawk:2.0.1"
-
+    implementation "org.koin:koin-android:1.0.0-RC-3"
+    implementation "org.koin:koin-android-scope:1.0.0-RC-3"
+    implementation "org.koin:koin-android-viewmodel:1.0.0-RC-3"
     //Firebase stuff
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
