@@ -13,17 +13,17 @@ import com.google.android.gms.tasks.Task
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.firebase.IFirebaseSignIn
+import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
-/**
- * A placeholder fragment containing a simple view.
- */
 class LoginFragment : BaseFragment() {
 
     val GOOGLE_SIGN_IN_REQUEST_CODE = 18
 
     val firebaseSignIn: IFirebaseSignIn by inject()
+    val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

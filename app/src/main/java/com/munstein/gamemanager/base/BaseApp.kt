@@ -17,8 +17,11 @@ class BaseApp : Application() {
         koin()
     }
 
-    fun koin(){
-        startKoin(this, listOf(KoinModules.firebaseLoginModule))
+    fun koin() {
+        startKoin(this, listOf(
+                KoinModules.firebaseLoginModule,
+                KoinModules.viewModelModule
+        ))
     }
 
 }
