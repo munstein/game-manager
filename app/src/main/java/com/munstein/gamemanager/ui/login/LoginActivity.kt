@@ -1,8 +1,6 @@
-package com.munstein.gamemanager.login
+package com.munstein.gamemanager.ui.login
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseActivity
 
@@ -14,12 +12,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
     }
 
 }
