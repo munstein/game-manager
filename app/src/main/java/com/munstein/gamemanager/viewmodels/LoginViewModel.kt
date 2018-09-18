@@ -1,4 +1,4 @@
-package com.munstein.gamemanager.ui.login
+package com.munstein.gamemanager.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
 import com.munstein.gamemanager.base.BaseViewModel
