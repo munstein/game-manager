@@ -66,10 +66,11 @@ dependencies {
     implementation "org.koin:koin-android-scope:1.0.0-RC-3"
     implementation "org.koin:koin-android-viewmodel:1.0.0-RC-3"
     //Firebase stuff
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    implementation 'com.google.gms:google-services:4.1.0'
     
     //Tests
     testImplementation 'junit:junit:4.12'
@@ -77,3 +78,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'com.google.gms.google-services'

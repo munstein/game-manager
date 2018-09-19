@@ -6,23 +6,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
-import com.munstein.gamemanager.firebase.IFirebaseSignIn
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
 
     val GOOGLE_SIGN_IN_REQUEST_CODE = 18
 
-    val firebaseSignIn: IFirebaseSignIn by inject()
     val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -36,14 +34,17 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun init() {
+        events()
+    }
+
+    private fun events() {
         fragment_login_btn_signin.setOnClickListener {
-            startActivityForResult(firebaseSignIn.buildSignInIntent(), GOOGLE_SIGN_IN_REQUEST_CODE)
+            startActivityForResult(loginViewModel.getSignInIntent(), GOOGLE_SIGN_IN_REQUEST_CODE)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
@@ -53,9 +54,13 @@ class LoginFragment : BaseFragment() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            account.id
+            navigateToHome()
         } catch (e: ApiException) {
             Log.w("hello there baby", "signInResult:failed code=" + e.statusCode)
         }
+    }
+
+    private fun navigateToHome() {
+        Toast.makeText(this.context, "soon at home", Toast.LENGTH_LONG).show()
     }
 }

@@ -1,16 +1,22 @@
 package com.munstein.gamemanager.viewmodels
 
-import android.arch.lifecycle.MutableLiveData
+import android.content.Intent
+import com.google.firebase.auth.FirebaseUser
 import com.munstein.gamemanager.base.BaseViewModel
+import com.munstein.gamemanager.firebase.IFirebaseSignIn
 
-class LoginViewModel : BaseViewModel(){
+class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : BaseViewModel() {
 
-    private val loginComplete by lazy {
-        MutableLiveData<Boolean>()
+    fun getSignInIntent() : Intent {
+        return firebaseSignIn.buildSignInIntent()
     }
 
-    fun login(){
+    fun logout() {
+        firebaseSignIn.logout()
+    }
 
+    fun getSignedInAccount() : FirebaseUser?{
+        return firebaseSignIn.getSignedInAccount()
     }
 
 }

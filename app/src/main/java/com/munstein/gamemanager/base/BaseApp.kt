@@ -1,6 +1,7 @@
 package com.munstein.gamemanager.base
 
 import android.app.Application
+import com.google.firebase.FirebaseApp
 import com.munstein.gamemanager.di.KoinModules
 import com.orhanobut.hawk.Hawk
 import org.koin.android.ext.android.startKoin
@@ -13,6 +14,7 @@ class BaseApp : Application() {
     }
 
     fun setup() {
+        firebase()
         Hawk.init(this).build()
         koin()
     }
@@ -22,6 +24,10 @@ class BaseApp : Application() {
                 KoinModules.firebaseLoginModule,
                 KoinModules.viewModelModule
         ))
+    }
+
+    fun firebase(){
+        FirebaseApp.initializeApp(this);
     }
 
 }

@@ -7,7 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class FirebaseLogin(val context: Context) : IFirebaseSignIn {
+class FirebaseSignIn(val context: Context) : IFirebaseSignIn {
 
     private val firebaseAuthInstance by lazy {
         FirebaseAuth.getInstance()
