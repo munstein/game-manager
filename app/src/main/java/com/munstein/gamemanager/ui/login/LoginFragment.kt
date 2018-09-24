@@ -17,6 +17,7 @@ import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
+
 class LoginFragment : BaseFragment() {
 
     val GOOGLE_SIGN_IN_REQUEST_CODE = 18
@@ -54,13 +55,12 @@ class LoginFragment : BaseFragment() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            navigateToHome()
+            loginViewModel.signIn(account)
         } catch (e: ApiException) {
             Log.w("hello there baby", "signInResult:failed code=" + e.statusCode)
         }
     }
 
-    private fun navigateToHome() {
-        Toast.makeText(this.context, "soon at home", Toast.LENGTH_LONG).show()
-    }
+    private fun navigateToHome() {}
+
 }
