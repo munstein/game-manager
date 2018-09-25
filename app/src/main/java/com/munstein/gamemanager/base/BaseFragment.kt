@@ -1,5 +1,5 @@
 package com.munstein.gamemanager.base
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
-abstract class BaseFragment : Fragment()
+abstract class BaseFragment : androidx.fragment.app.Fragment()

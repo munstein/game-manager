@@ -2,11 +2,10 @@ package com.munstein.gamemanager.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
@@ -15,8 +14,7 @@ import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
-import org.koin.android.viewmodel.ext.android.viewModel
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
 
@@ -36,12 +34,23 @@ class LoginFragment : BaseFragment() {
 
     private fun init() {
         events()
+        observers()
     }
 
     private fun events() {
         fragment_login_btn_signin.setOnClickListener {
             startActivityForResult(loginViewModel.getSignInIntent(), GOOGLE_SIGN_IN_REQUEST_CODE)
         }
+    }
+
+    private fun observers(){
+        loginViewModel.userIsSignedIn.observe(this, Observer {
+            if(it == true){
+                navigateToHome()
+            }else{
+
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -57,10 +66,11 @@ class LoginFragment : BaseFragment() {
             val account = completedTask.getResult(ApiException::class.java)
             loginViewModel.signIn(account)
         } catch (e: ApiException) {
-            Log.w("hello there baby", "signInResult:failed code=" + e.statusCode)
+
         }
     }
 
-    private fun navigateToHome() {}
-
+    private fun navigateToHome() {
+        
+    }
 }
