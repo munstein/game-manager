@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.munstein.gamemanager.base.BaseApp"
+        android:name=".base.BaseApp"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.munstein.gamemanager.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,6 +24,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:parentActivityName=".base.BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

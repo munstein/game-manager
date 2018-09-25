@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
+import com.munstein.gamemanager.ui.home.HomeActivity
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +31,18 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        if (loginViewModel.getSignedInAccount() != null) {
+            navigateToHome()
+        } else {
+            init()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loginViewModel.getSignedInAccount()?.run {
+            activity?.finish()
+        }
     }
 
     private fun init() {
@@ -43,12 +56,12 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    private fun observers(){
+    private fun observers() {
         loginViewModel.userIsSignedIn.observe(this, Observer {
-            if(it == true){
+            if (it == true) {
                 navigateToHome()
-            }else{
-
+            } else {
+                showLoginErrorDialog()
             }
         })
     }
@@ -66,11 +79,18 @@ class LoginFragment : BaseFragment() {
             val account = completedTask.getResult(ApiException::class.java)
             loginViewModel.signIn(account)
         } catch (e: ApiException) {
-
+            showLoginErrorDialog()
         }
     }
 
     private fun navigateToHome() {
-        
+        val intentToHomeActivity = Intent(this.context, HomeActivity::class.java)
+        startActivity(intentToHomeActivity)
+    }
+
+    private fun showLoginErrorDialog() {
+        this.context?.run {
+            MaterialDialog(this).title(R.string.error).message(R.string.login_error).show()
+        }
     }
 }
