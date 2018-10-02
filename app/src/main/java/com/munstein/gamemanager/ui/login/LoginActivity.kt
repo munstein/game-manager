@@ -13,5 +13,4 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
     }
-
 }

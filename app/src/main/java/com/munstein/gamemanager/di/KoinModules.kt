@@ -1,7 +1,7 @@
 package com.munstein.gamemanager.di
 
-import com.munstein.gamemanager.firebase.FirebaseSignIn
-import com.munstein.gamemanager.firebase.IFirebaseSignIn
+import com.munstein.gamemanager.firebase.signin.FirebaseSignIn
+import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module

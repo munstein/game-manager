@@ -5,7 +5,7 @@ import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.munstein.gamemanager.base.BaseViewModel
-import com.munstein.gamemanager.firebase.IFirebaseSignIn
+import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 
 class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : BaseViewModel() {
 
@@ -26,5 +26,4 @@ class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : BaseViewMode
     fun getSignedInAccount(): FirebaseUser? {
         return firebaseSignIn.getSignedInAccount()
     }
-
 }

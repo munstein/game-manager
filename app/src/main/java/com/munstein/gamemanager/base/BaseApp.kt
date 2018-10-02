@@ -26,8 +26,7 @@ class BaseApp : Application() {
         ))
     }
 
-    fun firebase(){
-        FirebaseApp.initializeApp(this);
+    fun firebase() {
+        FirebaseApp.initializeApp(this)
     }
-
 }

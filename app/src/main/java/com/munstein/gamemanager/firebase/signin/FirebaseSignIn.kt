@@ -1,4 +1,4 @@
-package com.munstein.gamemanager.firebase
+package com.munstein.gamemanager.firebase.signin
 
 import android.content.Context
 import android.content.Intent
@@ -30,11 +30,11 @@ class FirebaseSignIn(val context: Context) : IFirebaseSignIn {
         return firebaseAuthInstance.currentUser
     }
 
-    override fun logout(){
+    override fun logout() {
         firebaseAuthInstance.signOut()
     }
 
-    override fun signInToFirebaseWithGoogleAccount(account: GoogleSignInAccount) : Task<AuthResult> {
+    override fun signInToFirebaseWithGoogleAccount(account: GoogleSignInAccount): Task<AuthResult> {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         return FirebaseAuth.getInstance().signInWithCredential(credential)
     }

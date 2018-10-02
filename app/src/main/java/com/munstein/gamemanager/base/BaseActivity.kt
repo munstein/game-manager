@@ -7,8 +7,7 @@ import android.widget.Toast
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
 
-    protected fun showToast(text : String){
+    protected fun showToast(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
-
 }
