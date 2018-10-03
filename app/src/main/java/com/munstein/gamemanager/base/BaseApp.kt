@@ -21,7 +21,7 @@ class BaseApp : Application() {
 
     fun koin() {
         startKoin(this, listOf(
-                KoinModules.firebaseLoginModule,
+                KoinModules.firebaseModule,
                 KoinModules.viewModelModule
         ))
     }

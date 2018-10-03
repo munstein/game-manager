@@ -7,4 +7,30 @@
     tools:context=".ui.home.HomeActivityFragment"
     tools:showIn="@layout/activity_home">
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_home_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/app_margin"
+        android:layout_marginTop="@dimen/app_margin"
+        android:layout_marginEnd="@dimen/app_margin"
+        android:text="@string/app_name"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_home_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/app_margin"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/app_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_home_txt_title" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

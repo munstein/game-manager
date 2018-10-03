@@ -13,7 +13,6 @@ class HomeActivity : BaseActivity() {
         setContentView(R.layout.activity_home)
         setSupportActionBar(home_bottom_bar)
         home_fab_add.setOnClickListener { view ->
-
         }
     }
 
