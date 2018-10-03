@@ -13,14 +13,14 @@ import org.koin.dsl.module.module
 
 object KoinModules {
 
-    val firebaseModule : Module = module {
+    val firebaseModule: Module = module {
         single { FirebaseSignIn(get()) as IFirebaseSignIn }
-        single { FirestoreHome() as IFirestoreHome}
+        single { FirestoreHome() as IFirestoreHome }
         single { FirebaseFirestore.getInstance() }
     }
 
     val viewModelModule: Module = module {
-        viewModel { LoginViewModel(get())}
+        viewModel { LoginViewModel(get()) }
         viewModel { HomeViewModel(get()) }
     }
 }
