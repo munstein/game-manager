@@ -12,4 +12,5 @@ Also an opportunity to play with some alternative libs and test new stuff. 🤓
   * [Hawk](https://github.com/orhanobut/hawk)
   * [ktlint](https://github.com/shyiko/ktlint)
   * [Koin](https://github.com/InsertKoinIO/koin)
-  
+  * [Material Dialogs](https://github.com/afollestad/material-dialogs)
+  * [TapTargetView](https://github.com/KeepSafe/TapTargetView)
