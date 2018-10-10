@@ -15,7 +15,7 @@ object KoinModules {
 
     val firebaseModule: Module = module {
         single { FirebaseSignIn(get()) as IFirebaseSignIn }
-        single { FirestoreHome() as IFirestoreHome }
+        single { FirestoreHome(get()) as IFirestoreHome }
         single { FirebaseFirestore.getInstance() }
     }
 
