@@ -14,3 +14,5 @@ Also an opportunity to play with some alternative libs and test new stuff. 🤓
   * [Koin](https://github.com/InsertKoinIO/koin)
   * [Material Dialogs](https://github.com/afollestad/material-dialogs)
   * [TapTargetView](https://github.com/KeepSafe/TapTargetView)
+  * [Detekt](https://github.com/arturbosch/detekt)
+ 
