@@ -12,8 +12,6 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(home_bottom_bar)
-        home_fab_add.setOnClickListener { view ->
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -21,4 +19,6 @@ class HomeActivity : BaseActivity() {
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
+
+
 }
