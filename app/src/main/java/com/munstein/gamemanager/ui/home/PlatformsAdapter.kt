@@ -1,4 +1,3 @@
 package com.munstein.gamemanager.ui.home
 
-class PlatformsAdapter {
-}
+class PlatformsAdapter

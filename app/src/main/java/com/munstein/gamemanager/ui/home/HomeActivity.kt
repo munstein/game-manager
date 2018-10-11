@@ -19,6 +19,4 @@ class HomeActivity : BaseActivity() {
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
-
-
 }
