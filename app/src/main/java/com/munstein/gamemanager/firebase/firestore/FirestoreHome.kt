@@ -4,9 +4,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FirestoreHome(private val dbInstance : FirebaseFirestore): IFirestoreHome {
+class FirestoreHome(private val dbInstance: FirebaseFirestore) : IFirestoreHome {
 
-    override fun addPlatform(id : String, name: String): Task<DocumentReference> {
+    override fun addPlatform(id: String, name: String): Task<DocumentReference> {
         return dbInstance.collection(id).add(name)
     }
 
