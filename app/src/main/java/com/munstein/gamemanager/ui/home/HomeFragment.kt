@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.input
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.viewmodels.HomeViewModel
@@ -16,26 +18,46 @@ class HomeFragment : BaseFragment() {
     private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
     }
 
-    // TODO implement
     private fun showAddPlatformDialog() {
+        context?.let {
+            MaterialDialog(it)
+                    .title(R.string.dialog_add_platform)
+                    .positiveButton(R.string.ok)
+                    .negativeButton(R.string.cancel)
+                    .input{ _, text ->
+                        addPlatform(text.toString())
+                    }
+                    .show()
+        }
     }
 
-    // TODO implement
+    //TODO implement
+    private fun addPlatform(platform: String) {
+
+    }
+
     private fun showRemovePlatformDialog() {
+        context?.let {
+            MaterialDialog(it)
+                    .title(R.string.dialog_remove_platform)
+                    .positiveButton(R.string.ok) {  }
+                    .negativeButton(R.string.cancel)
+                    .show()
+        }
     }
 
-    // TODO implement
     private fun init() {
         ui()
         events()
