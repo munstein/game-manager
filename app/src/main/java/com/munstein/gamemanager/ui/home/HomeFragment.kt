@@ -18,9 +18,9 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
     private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -30,9 +30,8 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
         init()
     }
 
-    //TODO implement
+    // TODO implement
     override fun onClick(platformTitle: String) {
-
     }
 
     private fun showAddPlatformDialog() {
@@ -48,9 +47,8 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
         }
     }
 
-    //TODO implement
+    // TODO implement
     private fun addPlatform(platform: String) {
-
     }
 
     private fun showRemovePlatformDialog() {
