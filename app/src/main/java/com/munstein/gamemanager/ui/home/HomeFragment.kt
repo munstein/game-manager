@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
 
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -30,13 +30,18 @@ class HomeFragment : BaseFragment() {
         init()
     }
 
+    //TODO implement
+    override fun onClick(platformTitle: String) {
+
+    }
+
     private fun showAddPlatformDialog() {
         context?.let {
             MaterialDialog(it)
                     .title(R.string.dialog_add_platform)
                     .positiveButton(R.string.ok)
                     .negativeButton(R.string.cancel)
-                    .input{ _, text ->
+                    .input { _, text ->
                         addPlatform(text.toString())
                     }
                     .show()
@@ -52,7 +57,7 @@ class HomeFragment : BaseFragment() {
         context?.let {
             MaterialDialog(it)
                     .title(R.string.dialog_remove_platform)
-                    .positiveButton(R.string.ok) {  }
+                    .positiveButton(R.string.ok) { }
                     .negativeButton(R.string.cancel)
                     .show()
         }
