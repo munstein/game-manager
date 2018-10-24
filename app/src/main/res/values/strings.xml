@@ -11,4 +11,5 @@
     <string name="dialog_remove_platform">Remove platform?</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_my_games">MyGamesActivity</string>
 </resources>

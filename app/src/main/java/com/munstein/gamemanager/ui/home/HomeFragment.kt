@@ -9,9 +9,7 @@ import com.afollestad.materialdialogs.input.input
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.viewmodels.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
 

@@ -83,3 +83,9 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'com.google.android.material:material:1.0.0-alpha1'
+}
