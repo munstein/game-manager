@@ -2,7 +2,7 @@ package com.munstein.gamemanager.ui.mygames
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import com.munstein.gamemanager.R
 
 import kotlinx.android.synthetic.main.activity_my_games.*
@@ -19,5 +19,4 @@ class MyGamesActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
     }
-
 }
