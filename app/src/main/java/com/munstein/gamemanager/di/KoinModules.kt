@@ -5,6 +5,10 @@ import com.munstein.gamemanager.firebase.firestore.FirestoreHome
 import com.munstein.gamemanager.firebase.firestore.IFirestoreHome
 import com.munstein.gamemanager.firebase.signin.FirebaseSignIn
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
+import com.munstein.gamemanager.interactor.platform.IPlatformInteractor
+import com.munstein.gamemanager.interactor.platform.PlatformInteractor
+import com.munstein.gamemanager.repository.platform.IPlatformRepository
+import com.munstein.gamemanager.repository.platform.PlatformRepository
 import com.munstein.gamemanager.viewmodels.HomeViewModel
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -22,5 +26,13 @@ object KoinModules {
     val viewModelModule: Module = module {
         viewModel { LoginViewModel(get()) }
         viewModel { HomeViewModel(get()) }
+    }
+
+    val interactor: Module = module {
+        single { PlatformInteractor(get()) as IPlatformInteractor}
+    }
+
+    val repository: Module = module {
+        single { PlatformRepository() as IPlatformRepository }
     }
 }
