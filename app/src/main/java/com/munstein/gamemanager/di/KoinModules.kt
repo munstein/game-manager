@@ -29,7 +29,7 @@ object KoinModules {
     }
 
     val interactor: Module = module {
-        single { PlatformInteractor(get()) as IPlatformInteractor}
+        single { PlatformInteractor(get()) as IPlatformInteractor }
     }
 
     val repository: Module = module {
