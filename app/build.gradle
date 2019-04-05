@@ -26,6 +26,9 @@ android {
             splits.density.enable = false
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 repositories {
