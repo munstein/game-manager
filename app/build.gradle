@@ -26,6 +26,9 @@ android {
             splits.density.enable = false
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 repositories {
@@ -88,8 +91,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
 }
-
-apply plugin: 'com.google.gms.google-services'
 
 dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
