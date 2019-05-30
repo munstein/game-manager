@@ -13,6 +13,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
+import com.munstein.gamemanager.extensions.launchActivity
 import com.munstein.gamemanager.ui.home.HomeActivity
 import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -25,9 +26,9 @@ class LoginFragment : BaseFragment() {
     val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
@@ -89,8 +90,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun navigateToHome() {
-        val intentToHomeActivity = Intent(this.context, HomeActivity::class.java)
-        startActivity(intentToHomeActivity)
+        activity?.launchActivity<HomeActivity>()
     }
 
     private fun showLoginErrorDialog() {
