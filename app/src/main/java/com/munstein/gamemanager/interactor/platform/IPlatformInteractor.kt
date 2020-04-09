@@ -6,4 +6,5 @@ import com.google.firebase.firestore.DocumentReference
 interface IPlatformInteractor {
     fun addPlatform(name: String): Task<DocumentReference>
     fun removePlatform(name: String): Task<Void>
+    fun getPlatforms() : Task<DocumentReference>
 }

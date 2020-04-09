@@ -1,10 +1,9 @@
 package com.munstein.gamemanager.di
 
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.munstein.gamemanager.firebase.firestore.FirestoreHome
-import com.munstein.gamemanager.firebase.firestore.IFirestoreHome
 import com.munstein.gamemanager.firebase.signin.FirebaseSignIn
-import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 import com.munstein.gamemanager.interactor.platform.IPlatformInteractor
 import com.munstein.gamemanager.interactor.platform.PlatformInteractor
 import com.munstein.gamemanager.repository.platform.IPlatformRepository
@@ -18,8 +17,8 @@ import org.koin.dsl.module.module
 object KoinModules {
 
     val firebaseModule: Module = module {
-        single { FirebaseSignIn(get()) as IFirebaseSignIn }
-        single { FirestoreHome(get()) as IFirestoreHome }
+        single { FirebaseSignIn(get()) }
+        single { FirestoreHome(get()) }
         single { FirebaseFirestore.getInstance() }
     }
 
