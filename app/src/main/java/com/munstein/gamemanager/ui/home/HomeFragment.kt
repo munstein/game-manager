@@ -9,6 +9,8 @@ import com.afollestad.materialdialogs.input.input
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.viewmodels.HomeViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
@@ -26,6 +28,9 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        GlobalScope.launch {
+            homeViewModel.insertPlatform("texto")
+        }
     }
 
     // TODO implement

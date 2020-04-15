@@ -19,6 +19,7 @@ class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : CoroutineVie
 
     fun signIn(account: GoogleSignInAccount) {
         firebaseSignIn.signInToFirebaseWithGoogleAccount(account).addOnCompleteListener { task ->
+
             userIsSignedIn.postValue(task.isSuccessful)
         }
     }
