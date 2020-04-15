@@ -19,11 +19,12 @@ import com.munstein.gamemanager.viewmodels.LoginViewModel
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Suppress("PrivatePropertyName")
 class LoginFragment : BaseFragment() {
 
-    val GOOGLE_SIGN_IN_REQUEST_CODE = 18
+    private val GOOGLE_SIGN_IN_REQUEST_CODE = 18
 
-    val loginViewModel: LoginViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater,

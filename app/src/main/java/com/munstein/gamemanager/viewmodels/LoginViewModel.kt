@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
-import com.munstein.gamemanager.base.BaseViewModel
+import com.munstein.gamemanager.base.CoroutineViewModel
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 
-class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : BaseViewModel() {
+class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : CoroutineViewModel() {
 
     val userIsSignedIn by lazy {
         MutableLiveData<Boolean>()
