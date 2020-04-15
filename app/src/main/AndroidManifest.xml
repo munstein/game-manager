@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:label="@string/home"
             android:name=".ui.home.HomeActivity"
             android:parentActivityName=".base.BaseActivity"
             android:screenOrientation="portrait"
@@ -33,7 +34,7 @@
         </activity>
         <activity
             android:name=".ui.mygames.MyGamesActivity"
-            android:label="@string/title_activity_my_games"
+            android:label="@string/my_games"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

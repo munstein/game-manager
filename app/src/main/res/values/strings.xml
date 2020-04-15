@@ -2,14 +2,13 @@
     <string name="app_name">Gage</string>
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
-    <string name="title_activity_login">LoginActivity</string>
     <string name="login">Login</string>
     <string name="error">Error</string>
     <string name="login_error">Try again later. It\'s probably Google\'s fault though. </string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="home">Home</string>
     <string name="dialog_add_platform">Add platform</string>
     <string name="dialog_remove_platform">Remove platform?</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name="title_activity_my_games">MyGamesActivity</string>
+    <string name="my_games">MyGamesActivity</string>
 </resources>
