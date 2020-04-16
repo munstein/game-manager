@@ -6,8 +6,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.munstein.gamemanager.base.CoroutineViewModel
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
+import com.munstein.gamemanager.interactor.user.IUserInteractor
+import com.munstein.gamemanager.interactor.user.UserInteractor
+import com.munstein.gamemanager.model.User
 
-class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : CoroutineViewModel() {
+class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn,
+                     private val userInteractor: IUserInteractor) : CoroutineViewModel() {
 
     val userIsSignedIn by lazy {
         MutableLiveData<Boolean>()
@@ -19,8 +23,10 @@ class LoginViewModel(private val firebaseSignIn: IFirebaseSignIn) : CoroutineVie
 
     fun signIn(account: GoogleSignInAccount) {
         firebaseSignIn.signInToFirebaseWithGoogleAccount(account).addOnCompleteListener { task ->
-
             userIsSignedIn.postValue(task.isSuccessful)
+            task.result?.user?.let {
+                userInteractor.saveUser(User(it.uid, it.displayName ?: ""))
+            }
         }
     }
 

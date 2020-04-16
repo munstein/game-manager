@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 
-open class CoroutineViewModel : ViewModel(), CoroutineScope {
+abstract class CoroutineViewModel : ViewModel(), CoroutineScope {
 
     override val coroutineContext = Main
 

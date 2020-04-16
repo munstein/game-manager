@@ -22,9 +22,9 @@ class BaseApp : Application() {
     fun koin() {
         startKoin(this, listOf(
                 KoinModules.firebaseModule,
-                KoinModules.viewModelModule,
                 KoinModules.interactorModule,
-                KoinModules.repositoryModule
+                KoinModules.repositoryModule,
+                KoinModules.viewModelModule
         ))
     }
 
