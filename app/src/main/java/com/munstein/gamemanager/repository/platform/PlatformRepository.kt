@@ -1,6 +1,7 @@
 package com.munstein.gamemanager.repository.platform
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.munstein.gamemanager.model.Games
 import com.munstein.gamemanager.model.Platform
 import com.munstein.gamemanager.repository.user.IUserRepository
 import com.munstein.gamemanager.repository.user.UserRepository
@@ -17,17 +18,24 @@ class PlatformRepository(private val databaseReference: FirebaseFirestore, priva
 
     override suspend fun addPlatform(name: String): Deferred<Void> = withContext(IO) {
         async {
-            return@async databaseReference.collection(collection).document(userRepository.getUser().id).collection(child).document(name).set(HashMap<String, Object>()).await()
+            return@async databaseReference.collection(collection).document(userRepository.getUser().id).collection(child).document(name).set(Games()).await()
         }
     }
 
-    override suspend fun removePlatform(name: String): Deferred<Void> = withContext(IO){
+    override suspend fun removePlatform(name: String): Deferred<Void> = withContext(IO) {
         async {
-            return@async databaseReference.collection(collection).document(name).delete().await()
+            return@async databaseReference.collection(collection).document(userRepository.getUser().id).collection(child).document(name).delete().await()
         }
     }
 
     override suspend fun getPlatforms(): Deferred<List<Platform>> = withContext(IO) {
         TODO("Not yet implemented")
+    }
+
+    private fun getX() {
+        val f = databaseReference.collection(collection).document(userRepository.getUser().id).collection(child).get().addOnCompleteListener {
+            val x = it
+            x.toString()
+        }
     }
 }

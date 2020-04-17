@@ -13,8 +13,9 @@ class HomeViewModel(private val platformInteractor: IPlatformInteractor) : Corou
     suspend fun insertPlatform(name: String) {
         jobs add launch {
             try {
-                platformInteractor.addPlatform(name)
                 isLoading.postValue(true)
+                platformInteractor.addPlatform("xbox")
+                isLoading.postValue(false)
             } catch (x: Exception) {
                 val xx = 0
             } finally {
@@ -22,5 +23,6 @@ class HomeViewModel(private val platformInteractor: IPlatformInteractor) : Corou
             }
         }
     }
+
 
 }
