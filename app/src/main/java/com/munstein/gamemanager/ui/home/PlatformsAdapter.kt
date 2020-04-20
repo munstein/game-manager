@@ -18,8 +18,8 @@ class PlatformsAdapter(private val platforms: Array<Platform>, private val onHol
 
     override fun onBindViewHolder(holder: PlatformViewHolder, position: Int) {
         with(platforms[position]) {
-            holder.title.text = title
-            holder.root.setOnClickListener { onHolderClick.onClick(platformTitle = title) }
+            holder.title.text = name
+            holder.root.setOnClickListener { onHolderClick.onClick(platformTitle = name) }
         }
     }
 }

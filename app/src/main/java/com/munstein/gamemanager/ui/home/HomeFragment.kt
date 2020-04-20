@@ -28,9 +28,6 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        GlobalScope.launch {
-            homeViewModel.insertPlatform("texto")
-        }
     }
 
     // TODO implement
