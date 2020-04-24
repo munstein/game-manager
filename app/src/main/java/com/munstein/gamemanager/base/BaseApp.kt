@@ -24,7 +24,8 @@ class BaseApp : Application() {
                 KoinModules.firebaseModule,
                 KoinModules.interactorModule,
                 KoinModules.repositoryModule,
-                KoinModules.viewModelModule
+                KoinModules.viewModelModule,
+                KoinModules.utilModule
         ))
     }
 

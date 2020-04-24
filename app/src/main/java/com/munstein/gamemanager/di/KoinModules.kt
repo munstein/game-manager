@@ -2,6 +2,8 @@ package com.munstein.gamemanager.di
 
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.munstein.gamemanager.dialog.IDialogBuilder
+import com.munstein.gamemanager.dialog.MaterialDialogBuilder
 import com.munstein.gamemanager.firebase.signin.FirebaseSignIn
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 import com.munstein.gamemanager.interactor.platform.IPlatformInteractor
@@ -41,5 +43,9 @@ object KoinModules {
     val repositoryModule: Module = module(override = true) {
         single { UserRepository() as IUserRepository }
         single { PlatformRepository(get(), get()) as IPlatformRepository }
+    }
+
+    val utilModule:Module = module(override = true) {
+        single { MaterialDialogBuilder() as IDialogBuilder }
     }
 }

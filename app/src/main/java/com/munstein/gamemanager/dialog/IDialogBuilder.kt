@@ -1,6 +1,20 @@
 package com.munstein.gamemanager.dialog
 
+import android.content.Context
+import androidx.annotation.StringRes
+
 interface IDialogBuilder {
-    fun buildTextInputDialog(title : String ,message: String, onConfirmCallback : (text : String) -> Unit)
-    fun buildConfirmationDialog(title : String, message: String)
+    fun displayTextInputDialog(context: Context,
+                               @StringRes title: Int,
+                               @StringRes message: Int,
+                               @StringRes positive: Int,
+                               @StringRes negative: Int,
+                               onConfirmCallback: (text: String) -> Unit)
+
+    fun displayConfirmationDialog(context: Context,
+                                  @StringRes title: Int,
+                                  @StringRes message: Int,
+                                  @StringRes positive: Int,
+                                  @StringRes negative: Int,
+                                  onConfirmCallback: () -> Unit)
 }

@@ -1,26 +1,29 @@
 package com.munstein.gamemanager.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.base.ResourceState
+import com.munstein.gamemanager.custom.HorizontalMarginDecoration
+import com.munstein.gamemanager.custom.VerticalSpacing
+import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.model.Platform
 import com.munstein.gamemanager.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private val dialogBuilder: IDialogBuilder by inject()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -37,18 +40,14 @@ class HomeFragment : BaseFragment() {
 
     private fun showAddPlatformDialog() {
         context?.let {
-            buildDialog(it).show()
+            dialogBuilder.displayTextInputDialog(it,
+                    R.string.dialog_remove_platform,
+                    R.string.dialog_remove_platform,
+                    R.string.ok,
+                    R.string.cancel) { input ->
+                addPlatform(input)
+            }
         }
-    }
-
-    private fun buildDialog(context: Context): MaterialDialog {
-        return MaterialDialog(context)
-                .title(R.string.dialog_add_platform)
-                .positiveButton(R.string.ok)
-                .negativeButton(R.string.cancel)
-                .input { _, text ->
-                    addPlatform(text.toString())
-                }
     }
 
     private fun addPlatform(platform: String) {
@@ -57,13 +56,15 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun showRemovePlatformDialog() {
+    private fun showRemovePlatformDialog(platform: Platform) {
         context?.let {
-            MaterialDialog(it)
-                    .title(R.string.dialog_remove_platform)
-                    .positiveButton(R.string.ok) { }
-                    .negativeButton(R.string.cancel)
-                    .show()
+            dialogBuilder.displayConfirmationDialog(it,
+                    R.string.dialog_remove_platform,
+                    R.string.dialog_remove_platform,
+                    R.string.ok,
+                    R.string.cancel) {
+                removePlatform(platform)
+            }
         }
     }
 
@@ -115,6 +116,7 @@ class HomeFragment : BaseFragment() {
                     showLoading()
                 }
                 ResourceState.SUCCESS -> {
+                    displayPlatforms(it.data ?: listOf())
                     hideLoading()
                 }
                 ResourceState.ERROR -> {
@@ -123,6 +125,16 @@ class HomeFragment : BaseFragment() {
             }
         })
     }
+
+    private fun displayPlatforms(platforms: List<Platform>) {
+        if (platforms.isEmpty()) {
+            showEmptyState()
+        } else {
+            setupRecyclerView(platforms)
+            hideEmptyState()
+        }
+    }
+
 
     private fun getPlatforms() {
         GlobalScope.launch {
@@ -139,7 +151,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView(platforms: List<Platform>) {
+        val recyclerMargin = resources.getDimension(R.dimen.app_margin).toInt()
         val adapter = PlatformsAdapter(platforms, ::navigateToGamesActivity, ::removePlatform)
+        fragment_home_recycler.layoutManager = LinearLayoutManager(context!!)
+        fragment_home_recycler.addItemDecoration(HorizontalMarginDecoration(recyclerMargin))
+        fragment_home_recycler.addItemDecoration(VerticalSpacing(recyclerMargin))
+        fragment_home_recycler.adapter = adapter
     }
 
     private fun navigateToGamesActivity(platform: Platform) {
@@ -147,6 +164,16 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun removePlatform(platform: Platform) {
+        GlobalScope.launch {
+            homeViewModel.removePlatform(platform.name)
+        }
+    }
 
+    private fun showEmptyState() {
+        fragment_home_txt_empty_state_message.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyState() {
+        fragment_home_txt_empty_state_message.visibility = View.GONE
     }
 }

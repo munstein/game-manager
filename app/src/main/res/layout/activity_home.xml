@@ -24,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/home_bottom_bar"
+        android:backgroundTint="@color/colorAccent"
+        android:tint="@color/colorAccent"
         app:srcCompat="@drawable/ic_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
