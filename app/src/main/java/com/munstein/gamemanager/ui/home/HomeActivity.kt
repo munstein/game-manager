@@ -2,13 +2,16 @@ package com.munstein.gamemanager.ui.home
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity() {
 
-    var onFabClick = {}
+    private var onFabClick = {}
+
+    private var onLogoutOptionSelected = {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +26,16 @@ class HomeActivity : BaseActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                onLogoutOptionSelected.invoke()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
     private fun init() {
         setupEvents()
     }
@@ -35,5 +48,9 @@ class HomeActivity : BaseActivity() {
 
     fun setOnFabClickListener(action: () -> Unit) {
         onFabClick = action
+    }
+
+    fun setOnLogoutOptionSelected(action: () -> Unit) {
+        onLogoutOptionSelected = action
     }
 }

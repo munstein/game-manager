@@ -11,4 +11,8 @@ class UserRepository : IUserRepository {
     override fun saveUser(user: User) {
         Hawk.put(userKey, user)
     }
+
+    override fun removeUser() {
+        Hawk.delete(userKey)
+    }
 }

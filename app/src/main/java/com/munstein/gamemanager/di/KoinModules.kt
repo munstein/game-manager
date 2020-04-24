@@ -32,7 +32,7 @@ object KoinModules {
 
     val viewModelModule: Module = module(override = true) {
         viewModel { LoginViewModel(get(), get()) }
-        viewModel { HomeViewModel(get()) }
+        viewModel { HomeViewModel(get(), get(), get()) }
     }
 
     val interactorModule: Module = module(override = true) {

@@ -9,7 +9,7 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="my_games">MyGamesActivity</string>
-    <string name="empty_state_message">No platforms found.</string>
+    <string name="empty_state_message">No platforms found. \n Tap the "+" to add one.</string>
 
     <!--Dialog -->
     <string name="dialog_add_platform">Add platform</string>

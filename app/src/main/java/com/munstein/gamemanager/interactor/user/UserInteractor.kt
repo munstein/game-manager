@@ -11,4 +11,8 @@ class UserInteractor(private val repository: IUserRepository) : IUserInteractor 
     override fun saveUser(user: User) {
         repository.saveUser(user)
     }
+
+    override fun removeUser() {
+        repository.removeUser()
+    }
 }

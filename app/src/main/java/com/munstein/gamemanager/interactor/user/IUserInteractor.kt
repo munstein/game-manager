@@ -5,4 +5,5 @@ import com.munstein.gamemanager.model.User
 interface IUserInteractor {
     fun getUser() : User
     fun saveUser(user : User)
+    fun removeUser()
 }

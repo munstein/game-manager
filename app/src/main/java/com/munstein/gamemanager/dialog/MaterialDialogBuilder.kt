@@ -18,7 +18,7 @@ class MaterialDialogBuilder : IDialogBuilder {
 
     override fun displayConfirmationDialog(context: Context, title: Int, message: Int, positive: Int, negative: Int, onConfirmCallback: () -> Unit) {
         MaterialDialog(context)
-                .title(R.string.dialog_add_platform)
+                .title(title)
                 .positiveButton(R.string.ok)
                 .negativeButton(R.string.cancel)
                 .positiveButton {
