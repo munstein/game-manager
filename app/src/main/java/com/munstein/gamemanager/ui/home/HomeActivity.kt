@@ -22,17 +22,18 @@ class HomeActivity : BaseActivity() {
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
-    private fun init(){
+
+    private fun init() {
         setupEvents()
     }
 
-    private fun setupEvents(){
+    private fun setupEvents() {
         home_fab_add.setOnClickListener {
             onFabClick.invoke()
         }
     }
 
-    fun setOnFabClickListener(action : () -> Unit){
+    fun setOnFabClickListener(action: () -> Unit) {
         onFabClick = action
     }
 }
