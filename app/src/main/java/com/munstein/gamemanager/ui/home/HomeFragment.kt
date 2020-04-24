@@ -13,6 +13,7 @@ import com.munstein.gamemanager.custom.VerticalSpacing
 import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.model.Platform
 import com.munstein.gamemanager.ui.login.LoginActivity
+import com.munstein.gamemanager.ui.mygames.MyGamesActivity
 import com.munstein.gamemanager.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.GlobalScope
@@ -159,15 +160,19 @@ class HomeFragment : BaseFragment() {
 
     private fun setupRecyclerView(platforms: List<Platform>) {
         val recyclerMargin = resources.getDimension(R.dimen.app_margin).toInt()
-        val adapter = PlatformsAdapter(platforms, ::navigateToGamesActivity, ::showRemovePlatformDialog)
+        val adapter = PlatformsAdapter(platforms, ::navigateToMyGamesActivity, ::showRemovePlatformDialog)
         fragment_home_recycler.layoutManager = LinearLayoutManager(context!!)
         fragment_home_recycler.addItemDecoration(HorizontalMarginDecoration(recyclerMargin))
         fragment_home_recycler.addItemDecoration(VerticalSpacing(recyclerMargin))
         fragment_home_recycler.adapter = adapter
     }
 
-    private fun navigateToGamesActivity(platform: Platform) {
-
+    private fun navigateToMyGamesActivity(platform: Platform) {
+        context?.let {
+            val intent = Intent(it, MyGamesActivity::class.java)
+            intent.putExtra(MyGamesActivity.PLATFORM_EXTRA, platform)
+            startActivity(intent)
+        }
     }
 
     private fun navigateToLoginActivity() {
