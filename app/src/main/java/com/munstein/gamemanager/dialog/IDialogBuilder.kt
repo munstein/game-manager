@@ -16,5 +16,9 @@ interface IDialogBuilder {
                                   @StringRes message: Int,
                                   @StringRes positive: Int,
                                   @StringRes negative: Int,
-                                  onConfirmCallback: () -> Unit)
+                                  onConfirmCallback: () -> Unit? = {})
+
+    fun displayErrorDialog(context: Context,
+                           title: String,
+                           @StringRes positive: Int)
 }

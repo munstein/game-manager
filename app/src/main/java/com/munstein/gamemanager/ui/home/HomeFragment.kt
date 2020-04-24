@@ -9,7 +9,7 @@ import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.base.ResourceState
 import com.munstein.gamemanager.custom.HorizontalMarginDecoration
-import com.munstein.gamemanager.custom.VerticalSpacing
+import com.munstein.gamemanager.custom.VerticalMarginDecorator
 import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.model.Platform
 import com.munstein.gamemanager.ui.login.LoginActivity
@@ -42,7 +42,9 @@ class HomeFragment : BaseFragment() {
 
     private fun init() {
         initEvents()
+        initUI()
         initObservables()
+        hideEmptyState()
         getPlatforms()
     }
 
@@ -55,17 +57,24 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun initUI() {
+        setupRecyclerView()
+    }
+
     private fun initObservables() {
         homeViewModel.insert.observe(this, Observer {
             when (it.status) {
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideRecyclerView()
                 }
                 ResourceState.SUCCESS -> {
                     getPlatforms()
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowRecyclerView()
+                    it.error?.message?.let { message ->
+                        showOnErrorDialog(message)
+                    }
                 }
             }
         })
@@ -73,13 +82,13 @@ class HomeFragment : BaseFragment() {
         homeViewModel.remove.observe(this, Observer {
             when (it.status) {
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideRecyclerView()
                 }
                 ResourceState.SUCCESS -> {
                     getPlatforms()
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowRecyclerView()
                 }
             }
         })
@@ -87,14 +96,14 @@ class HomeFragment : BaseFragment() {
         homeViewModel.platforms.observe(this, Observer {
             when (it.status) {
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideRecyclerView()
                 }
                 ResourceState.SUCCESS -> {
                     displayPlatforms(it.data ?: listOf())
-                    hideLoading()
+                    hideLoadingShowRecyclerView()
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowRecyclerView()
                 }
             }
         })
@@ -134,11 +143,19 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun showOnErrorDialog(message: String) {
+        context?.let {
+            dialogBuilder.displayErrorDialog(it,
+                    message,
+                    R.string.ok)
+        }
+    }
+
     private fun displayPlatforms(platforms: List<Platform>) {
         if (platforms.isEmpty()) {
             showEmptyState()
         } else {
-            setupRecyclerView(platforms)
+            setupAdapter(platforms)
             hideEmptyState()
         }
     }
@@ -150,20 +167,25 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun showLoading() {
+    private fun showLoadingHideRecyclerView() {
         fragment_home_progress.show()
+        fragment_home_recycler.visibility = View.GONE
     }
 
-    private fun hideLoading() {
+    private fun hideLoadingShowRecyclerView() {
         fragment_home_progress.hide()
+        fragment_home_recycler.visibility = View.VISIBLE
     }
 
-    private fun setupRecyclerView(platforms: List<Platform>) {
+    private fun setupRecyclerView() {
         val recyclerMargin = resources.getDimension(R.dimen.app_margin).toInt()
-        val adapter = PlatformsAdapter(platforms, ::navigateToMyGamesActivity, ::showRemovePlatformDialog)
         fragment_home_recycler.layoutManager = LinearLayoutManager(context!!)
         fragment_home_recycler.addItemDecoration(HorizontalMarginDecoration(recyclerMargin))
-        fragment_home_recycler.addItemDecoration(VerticalSpacing(recyclerMargin))
+        fragment_home_recycler.addItemDecoration(VerticalMarginDecorator(recyclerMargin))
+    }
+
+    private fun setupAdapter(platforms: List<Platform>) {
+        val adapter = PlatformsAdapter(platforms, ::navigateToMyGamesActivity, ::showRemovePlatformDialog)
         fragment_home_recycler.adapter = adapter
     }
 

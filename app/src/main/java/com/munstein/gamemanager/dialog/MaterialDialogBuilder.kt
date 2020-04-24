@@ -1,6 +1,7 @@
 package com.munstein.gamemanager.dialog
 
 import android.content.Context
+import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.munstein.gamemanager.R
@@ -16,7 +17,7 @@ class MaterialDialogBuilder : IDialogBuilder {
                 }.show()
     }
 
-    override fun displayConfirmationDialog(context: Context, title: Int, message: Int, positive: Int, negative: Int, onConfirmCallback: () -> Unit) {
+    override fun displayConfirmationDialog(context: Context, title: Int, message: Int, positive: Int, negative: Int, onConfirmCallback: () -> Unit?) {
         MaterialDialog(context)
                 .title(title)
                 .positiveButton(R.string.ok)
@@ -24,5 +25,12 @@ class MaterialDialogBuilder : IDialogBuilder {
                 .positiveButton {
                     onConfirmCallback()
                 }.show()
+    }
+
+    override fun displayErrorDialog(context: Context, title: String, @StringRes positive: Int) {
+        MaterialDialog(context)
+                .title(text = title)
+                .positiveButton(R.string.ok)
+                .show()
     }
 }
