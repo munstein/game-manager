@@ -7,6 +7,10 @@
     tools:context=".ui.mygames.MyGamesFragment"
     tools:showIn="@layout/activity_my_games">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_my_games_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

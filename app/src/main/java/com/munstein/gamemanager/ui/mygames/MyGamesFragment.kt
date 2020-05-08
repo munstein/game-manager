@@ -1,10 +1,10 @@
 package com.munstein.gamemanager.ui.mygames
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.munstein.gamemanager.R
 
 /**
@@ -18,5 +18,17 @@ class MyGamesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_my_games, container, false)
+    }
+
+    companion object{
+        const val GAMES_ARG = "GAMES_ARG"
+
+        fun newInstance(list: ArrayList<String>): MyGamesFragment? {
+            val myFragment = MyGamesFragment()
+            val args = Bundle()
+            args.putStringArrayList(GAMES_ARG, list)
+            myFragment.arguments = args
+            return myFragment
+        }
     }
 }
