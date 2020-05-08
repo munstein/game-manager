@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mygames.MyGamesActivityFragment"
+    tools:context=".ui.mygames.MyGamesFragment"
     tools:showIn="@layout/activity_my_games">
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

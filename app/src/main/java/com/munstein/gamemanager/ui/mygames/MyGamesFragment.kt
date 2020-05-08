@@ -10,7 +10,7 @@ import com.munstein.gamemanager.R
 /**
  * A placeholder fragment containing a simple view.
  */
-class MyGamesActivityFragment : Fragment() {
+class MyGamesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
