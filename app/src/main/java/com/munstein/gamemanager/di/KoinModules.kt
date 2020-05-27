@@ -6,10 +6,14 @@ import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.dialog.MaterialDialogBuilder
 import com.munstein.gamemanager.firebase.signin.FirebaseSignIn
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
+import com.munstein.gamemanager.interactor.games.GamesInteractor
+import com.munstein.gamemanager.interactor.games.IGamesInteractor
 import com.munstein.gamemanager.interactor.platform.IPlatformInteractor
 import com.munstein.gamemanager.interactor.platform.PlatformInteractor
 import com.munstein.gamemanager.interactor.user.IUserInteractor
 import com.munstein.gamemanager.interactor.user.UserInteractor
+import com.munstein.gamemanager.repository.games.GamesRepository
+import com.munstein.gamemanager.repository.games.IGamesRepository
 import com.munstein.gamemanager.repository.platform.IPlatformRepository
 import com.munstein.gamemanager.repository.platform.PlatformRepository
 import com.munstein.gamemanager.repository.user.IUserRepository
@@ -38,14 +42,16 @@ object KoinModules {
     val interactorModule: Module = module(override = true) {
         single { PlatformInteractor(get()) as IPlatformInteractor }
         single { UserInteractor(get()) as IUserInteractor }
+        single { GamesInteractor(get()) as IGamesInteractor }
     }
 
     val repositoryModule: Module = module(override = true) {
         single { UserRepository() as IUserRepository }
         single { PlatformRepository(get(), get()) as IPlatformRepository }
+        single { GamesRepository(get(), get()) as IGamesRepository }
     }
 
-    val utilModule:Module = module(override = true) {
+    val utilModule: Module = module(override = true) {
         single { MaterialDialogBuilder() as IDialogBuilder }
     }
 }
