@@ -5,4 +5,6 @@
     <color name="colorAccent">#ea9085</color>
     <color name="defaultCardBackground">#fff</color>
     <color name="defaultTextColor">#000</color>
+    <color name="normalTabTextColor">#767676</color>
+    <color name="selectedTabTextColor">#EEE</color>
 </resources>

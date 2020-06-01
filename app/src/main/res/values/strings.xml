@@ -11,7 +11,14 @@
     <string name="my_games">MyGamesActivity</string>
     <string name="empty_state_message">No platforms found. \n Tap the "+" to add one.</string>
 
+    <string name="have">have</string>
+    <string name="want">want</string>
+    <string name="playing">playing</string>
+
     <!--Dialog -->
     <string name="dialog_add_platform">Add platform</string>
     <string name="dialog_remove_platform">Remove platform?</string>
+
+    <!-- WTF -->
+    <string name="wtf">wtf</string>
 </resources>
