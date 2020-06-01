@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.munstein.gamemanager.base.BaseViewModel
 import com.munstein.gamemanager.base.Resource
 import com.munstein.gamemanager.interactor.games.GamesInteractor
-import com.munstein.gamemanager.model.Games
+import com.munstein.gamemanager.entity.Games
 import com.munstein.gamemanager.ui.mygames.GameColumn
 import java.lang.Exception
 

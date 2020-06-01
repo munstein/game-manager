@@ -1,4 +1,4 @@
-package com.munstein.gamemanager.model
+package com.munstein.gamemanager.entity
 
 data class Games(
     val have: ArrayList<String> = arrayListOf(),

@@ -7,7 +7,7 @@ import com.munstein.gamemanager.exceptions.PlatformAlreadyExistsException
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 import com.munstein.gamemanager.interactor.platform.IPlatformInteractor
 import com.munstein.gamemanager.interactor.user.IUserInteractor
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 import kotlinx.coroutines.launch
 
 class HomeViewModel(

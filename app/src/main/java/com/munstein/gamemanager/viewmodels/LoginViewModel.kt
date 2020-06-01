@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.munstein.gamemanager.base.BaseViewModel
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
 import com.munstein.gamemanager.interactor.user.IUserInteractor
-import com.munstein.gamemanager.model.User
+import com.munstein.gamemanager.entity.User
 
 class LoginViewModel(
     private val firebaseSignIn: IFirebaseSignIn,

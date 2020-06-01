@@ -3,7 +3,7 @@ package com.munstein.gamemanager.ui.mygames
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.munstein.gamemanager.model.Games
+import com.munstein.gamemanager.entity.Games
 
 class MyGamesFragmentAdapter(
     activity: AppCompatActivity,

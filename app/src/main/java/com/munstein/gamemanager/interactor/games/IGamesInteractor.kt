@@ -1,6 +1,6 @@
 package com.munstein.gamemanager.interactor.games
 
-import com.munstein.gamemanager.model.Games
+import com.munstein.gamemanager.entity.Games
 
 interface IGamesInteractor {
     suspend fun getGames(platformTitle: String): Games

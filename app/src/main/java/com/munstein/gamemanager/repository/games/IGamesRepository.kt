@@ -1,6 +1,6 @@
 package com.munstein.gamemanager.repository.games
 
-import com.munstein.gamemanager.model.Games
+import com.munstein.gamemanager.entity.Games
 import kotlinx.coroutines.Deferred
 
 interface IGamesRepository {

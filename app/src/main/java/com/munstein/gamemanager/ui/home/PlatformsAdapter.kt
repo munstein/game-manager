@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.munstein.gamemanager.R
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 
 class PlatformsAdapter(
     private val platforms: List<Platform>,

@@ -1,7 +1,7 @@
 package com.munstein.gamemanager.repository.platform
 
 import com.munstein.gamemanager.datasource.FirestoreDataSource
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async

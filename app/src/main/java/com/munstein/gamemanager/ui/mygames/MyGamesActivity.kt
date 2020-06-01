@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayoutMediator
 import com.munstein.gamemanager.R
-import com.munstein.gamemanager.model.Games
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Games
+import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.viewmodels.MyGamesViewModel
 
 import kotlinx.android.synthetic.main.activity_my_games.*

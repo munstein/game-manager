@@ -1,6 +1,6 @@
 package com.munstein.gamemanager.interactor.user
 
-import com.munstein.gamemanager.model.User
+import com.munstein.gamemanager.entity.User
 
 interface IUserInteractor {
     fun getUser(): User

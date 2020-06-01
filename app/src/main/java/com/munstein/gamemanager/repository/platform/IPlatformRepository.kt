@@ -1,6 +1,6 @@
 package com.munstein.gamemanager.repository.platform
 
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 import kotlinx.coroutines.Deferred
 
 interface IPlatformRepository {

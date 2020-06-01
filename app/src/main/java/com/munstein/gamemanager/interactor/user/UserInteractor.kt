@@ -1,6 +1,6 @@
 package com.munstein.gamemanager.interactor.user
 
-import com.munstein.gamemanager.model.User
+import com.munstein.gamemanager.entity.User
 import com.munstein.gamemanager.repository.user.IUserRepository
 
 class UserInteractor(private val repository: IUserRepository) : IUserInteractor {

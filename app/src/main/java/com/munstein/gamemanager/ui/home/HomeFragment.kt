@@ -11,7 +11,7 @@ import com.munstein.gamemanager.base.ResourceState
 import com.munstein.gamemanager.custom.HorizontalMarginDecoration
 import com.munstein.gamemanager.custom.VerticalMarginDecorator
 import com.munstein.gamemanager.dialog.IDialogBuilder
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.ui.login.LoginActivity
 import com.munstein.gamemanager.ui.mygames.MyGamesActivity
 import com.munstein.gamemanager.viewmodels.HomeViewModel
