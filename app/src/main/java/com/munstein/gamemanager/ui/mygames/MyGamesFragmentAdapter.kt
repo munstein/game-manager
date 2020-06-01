@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.munstein.gamemanager.model.Games
 
-class MyGamesFragmentAdapter(activity: AppCompatActivity,
-                             private val games: Games) :
+class MyGamesFragmentAdapter(
+    activity: AppCompatActivity,
+    private val games: Games
+) :
         FragmentStateAdapter(activity) {
 
     private val itemsCount = 3

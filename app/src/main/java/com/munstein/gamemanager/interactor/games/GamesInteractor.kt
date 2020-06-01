@@ -41,5 +41,4 @@ class GamesInteractor(private val repository: IGamesRepository) : IGamesInteract
     private suspend fun setGames(platformTitle: String, games: Games) {
         repository.setGames(platformTitle, games)
     }
-
 }

@@ -1,8 +1,6 @@
 package com.munstein.gamemanager.ui.mygames
 
-import android.graphics.Color
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,7 +28,7 @@ class MyGamesActivity : AppCompatActivity() {
         setupUI()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         my_games_txt_title.text = platform.name
         setupViewPager(Games())
         setupTabs()
@@ -40,7 +38,6 @@ class MyGamesActivity : AppCompatActivity() {
         val adapter = MyGamesFragmentAdapter(this, games)
         my_games_viewpager.adapter = adapter
     }
-
 
     private fun setupTabs() {
         setupTabsTitles()
@@ -60,7 +57,6 @@ class MyGamesActivity : AppCompatActivity() {
 
     private fun setupTabsTextColors() {
         my_games_tablayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent))
-        my_games_tablayout.setTabTextColors(ContextCompat.getColor(this, R.color.normalTabTextColor), ContextCompat.getColor(this, R.color.selectedTabTextColor));
+        my_games_tablayout.setTabTextColors(ContextCompat.getColor(this, R.color.normalTabTextColor), ContextCompat.getColor(this, R.color.selectedTabTextColor))
     }
-
 }

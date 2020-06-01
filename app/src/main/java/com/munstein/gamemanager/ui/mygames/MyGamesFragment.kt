@@ -20,7 +20,7 @@ class MyGamesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_my_games, container, false)
     }
 
-    companion object{
+    companion object {
         const val GAMES_ARG = "GAMES_ARG"
 
         fun newInstance(list: ArrayList<String>): Fragment {

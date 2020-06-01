@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.model.Platform
 
-class PlatformsAdapter(private val platforms: List<Platform>,
-                       private val onHolderClick: (platform: Platform) -> Unit,
-                       private val onRemoveHolderClick: (platform: Platform) -> Unit) : RecyclerView.Adapter<PlatformViewHolder>() {
+class PlatformsAdapter(
+    private val platforms: List<Platform>,
+    private val onHolderClick: (platform: Platform) -> Unit,
+    private val onRemoveHolderClick: (platform: Platform) -> Unit
+) : RecyclerView.Adapter<PlatformViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlatformViewHolder {
         return PlatformViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.holder_platform, parent, false))

@@ -35,7 +35,6 @@ class HomeActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
     private fun init() {
         setupEvents()
     }

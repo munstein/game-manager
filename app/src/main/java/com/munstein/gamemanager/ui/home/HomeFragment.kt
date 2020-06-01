@@ -21,16 +21,15 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
     private val dialogBuilder: IDialogBuilder by inject()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -159,7 +158,6 @@ class HomeFragment : BaseFragment() {
             hideEmptyState()
         }
     }
-
 
     private fun getPlatforms() {
         GlobalScope.launch {

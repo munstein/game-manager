@@ -7,7 +7,6 @@ import kotlinx.coroutines.tasks.await
 
 class GamesRepository(private val platformDataSource: FirestoreDataSource) : IGamesRepository {
 
-
     override suspend fun getGames(platform: String): Deferred<Games?> = withContext(Dispatchers.IO) {
         async {
             return@async platformDataSource.getCollection().document(platform).get().await().toObject(Games::class.java)
@@ -21,5 +20,4 @@ class GamesRepository(private val platformDataSource: FirestoreDataSource) : IGa
             }
         }
     }
-
 }

@@ -6,5 +6,5 @@ import kotlinx.coroutines.Deferred
 interface IPlatformInteractor {
     suspend fun addPlatform(name: String): Deferred<Void>
     suspend fun removePlatform(name: String): Deferred<Void>
-    suspend fun getPlatforms() : Deferred<List<Platform>>
+    suspend fun getPlatforms(): Deferred<List<Platform>>
 }

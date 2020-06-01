@@ -16,5 +16,4 @@ class PlatformInteractor(private val repository: IPlatformRepository) : IPlatfor
     override suspend fun getPlatforms(): Deferred<List<Platform>> {
         return repository.getPlatforms()
     }
-
 }

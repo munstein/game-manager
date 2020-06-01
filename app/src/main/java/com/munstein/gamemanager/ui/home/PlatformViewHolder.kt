@@ -9,5 +9,4 @@ class PlatformViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val root by lazy { itemView.holder_platform_root }
     val title by lazy { itemView.holder_platform_txt_platform }
     val delete by lazy { itemView.holder_platform_img_delete }
-
 }

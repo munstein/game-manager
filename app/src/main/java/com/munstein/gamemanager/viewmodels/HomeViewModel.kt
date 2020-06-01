@@ -1,7 +1,7 @@
 package com.munstein.gamemanager.viewmodels
 
 import androidx.lifecycle.MutableLiveData
-import com.munstein.gamemanager.base.CoroutineViewModel
+import com.munstein.gamemanager.base.BaseViewModel
 import com.munstein.gamemanager.base.Resource
 import com.munstein.gamemanager.exceptions.PlatformAlreadyExistsException
 import com.munstein.gamemanager.firebase.signin.IFirebaseSignIn
@@ -10,9 +10,11 @@ import com.munstein.gamemanager.interactor.user.IUserInteractor
 import com.munstein.gamemanager.model.Platform
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val platformInteractor: IPlatformInteractor,
-                    private val firebaseSignIn: IFirebaseSignIn,
-                    private val userInteractor: IUserInteractor) : CoroutineViewModel() {
+class HomeViewModel(
+    private val platformInteractor: IPlatformInteractor,
+    private val firebaseSignIn: IFirebaseSignIn,
+    private val userInteractor: IUserInteractor
+) : BaseViewModel() {
 
     val insert by lazy { MutableLiveData<Resource<Unit>>() }
     val remove by lazy { MutableLiveData<Resource<Unit>>() }
