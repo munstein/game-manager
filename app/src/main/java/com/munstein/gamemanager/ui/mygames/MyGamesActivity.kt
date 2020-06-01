@@ -7,12 +7,16 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.model.Games
 import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.viewmodels.MyGamesViewModel
 
 import kotlinx.android.synthetic.main.activity_my_games.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyGamesActivity : AppCompatActivity() {
 
     private val platform by lazy { intent.getParcelableExtra(PLATFORM_EXTRA) as Platform }
+
+    private val viewModel : MyGamesViewModel by viewModel()
 
     companion object {
         const val PLATFORM_EXTRA = "PLATFORM_EXTRA"

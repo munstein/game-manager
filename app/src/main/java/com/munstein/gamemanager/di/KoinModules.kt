@@ -22,6 +22,7 @@ import com.munstein.gamemanager.repository.user.IUserRepository
 import com.munstein.gamemanager.repository.user.UserRepository
 import com.munstein.gamemanager.viewmodels.HomeViewModel
 import com.munstein.gamemanager.viewmodels.LoginViewModel
+import com.munstein.gamemanager.viewmodels.MyGamesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
@@ -39,6 +40,7 @@ object KoinModules {
     val viewModelModule: Module = module(override = true) {
         viewModel { LoginViewModel(get(), get()) }
         viewModel { HomeViewModel(get(), get(), get()) }
+        viewModel { MyGamesViewModel(get()) }
     }
 
     val interactorModule: Module = module(override = true) {
