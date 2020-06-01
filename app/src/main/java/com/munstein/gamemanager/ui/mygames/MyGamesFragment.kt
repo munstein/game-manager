@@ -23,7 +23,7 @@ class MyGamesFragment : Fragment() {
     companion object{
         const val GAMES_ARG = "GAMES_ARG"
 
-        fun newInstance(list: ArrayList<String>): MyGamesFragment? {
+        fun newInstance(list: ArrayList<String>): Fragment {
             val myFragment = MyGamesFragment()
             val args = Bundle()
             args.putStringArrayList(GAMES_ARG, list)
