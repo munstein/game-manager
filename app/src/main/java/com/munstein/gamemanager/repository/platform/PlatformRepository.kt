@@ -1,10 +1,7 @@
 package com.munstein.gamemanager.repository.platform
 
-import com.google.firebase.firestore.FirebaseFirestore
 import com.munstein.gamemanager.datasource.FirestoreDataSource
-import com.munstein.gamemanager.datasource.PlatformDataSource
 import com.munstein.gamemanager.model.Platform
-import com.munstein.gamemanager.repository.user.IUserRepository
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
