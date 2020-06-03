@@ -9,10 +9,7 @@ class GamesRepository(private val platformDataSource: FirestoreDataSource) : IGa
 
     override suspend fun getGames(platform: String): Deferred<Games?> = withContext(Dispatchers.IO) {
         async {
-            val b = platformDataSource.getCollection().document(platform).get()
-
-            val x = platformDataSource.getCollection().document(platform).get().await().toObject(Games::class.java)
-            return@async x
+            return@async platformDataSource.getCollection().document(platform).get().await().toObject(Games::class.java)
         }
     }
 

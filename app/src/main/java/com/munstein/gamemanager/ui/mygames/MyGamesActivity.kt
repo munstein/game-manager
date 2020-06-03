@@ -39,13 +39,43 @@ class MyGamesActivity : AppCompatActivity() {
         loadGames()
     }
 
+    private fun setupUI() {
+        my_games_txt_title.text = platform.name
+        setupViewPager(Games())
+        setupTabs()
+    }
+
+    private fun setupViewPager(games: Games) {
+        val adapter = MyGamesFragmentAdapter(this, games)
+        my_games_viewpager.adapter = adapter
+    }
+
+    private fun setupTabs() {
+        setupTabsTitles()
+        setupTabsTextColors()
+    }
+
+    private fun setupTabsTitles() {
+        TabLayoutMediator(my_games_tablayout, my_games_viewpager) { tab, position ->
+            tab.text = when (position) {
+                0 -> getString(R.string.have)
+                1 -> getString(R.string.want)
+                2 -> getString(R.string.playing)
+                else -> getString(R.string.wtf)
+            }
+        }.attach()
+    }
+
+    private fun setupTabsTextColors() {
+        my_games_tablayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent))
+        my_games_tablayout.setTabTextColors(ContextCompat.getColor(this, R.color.normalTabTextColor), ContextCompat.getColor(this, R.color.selectedTabTextColor))
+    }
+
     private fun setupObservers() {
         viewModel.games.observe(this, Observer {
             when (it.status) {
                 ResourceState.SUCCESS -> {
                     hideLoading()
-                    val x = it.data
-
                 }
                 ResourceState.ERROR -> {
                     hideLoading()
@@ -102,37 +132,5 @@ class MyGamesActivity : AppCompatActivity() {
         GlobalScope.async {
             viewModel.getGames(platform.name)
         }
-    }
-
-    private fun setupUI() {
-        my_games_txt_title.text = platform.name
-        setupViewPager(Games())
-        setupTabs()
-    }
-
-    private fun setupViewPager(games: Games) {
-        val adapter = MyGamesFragmentAdapter(this, games)
-        my_games_viewpager.adapter = adapter
-    }
-
-    private fun setupTabs() {
-        setupTabsTitles()
-        setupTabsTextColors()
-    }
-
-    private fun setupTabsTitles() {
-        TabLayoutMediator(my_games_tablayout, my_games_viewpager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.have)
-                1 -> getString(R.string.want)
-                2 -> getString(R.string.playing)
-                else -> getString(R.string.wtf)
-            }
-        }.attach()
-    }
-
-    private fun setupTabsTextColors() {
-        my_games_tablayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent))
-        my_games_tablayout.setTabTextColors(ContextCompat.getColor(this, R.color.normalTabTextColor), ContextCompat.getColor(this, R.color.selectedTabTextColor))
     }
 }
