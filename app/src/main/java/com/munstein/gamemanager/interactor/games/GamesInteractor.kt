@@ -5,7 +5,8 @@ import com.munstein.gamemanager.repository.games.IGamesRepository
 
 class GamesInteractor(private val repository: IGamesRepository) : IGamesInteractor {
     override suspend fun getGames(platformTitle: String): Games {
-        TODO("Not yet implemented")
+        val games = repository.getGames(platformTitle).await()
+        return games ?: Games()
     }
 
     override suspend fun deleteWantGame(games: Games, gameTitle: String, platformTitle: String) {

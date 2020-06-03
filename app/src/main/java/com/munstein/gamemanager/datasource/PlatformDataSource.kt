@@ -10,10 +10,9 @@ class PlatformDataSource(
 ) : FirestoreDataSource() {
 
     override val collectionName: String = "platforms"
-    val collection = "user_data"
 
     override fun getCollection(): CollectionReference {
-        return databaseReference.collection(collection)
+        return databaseReference.collection(userCollection)
                 .document(userRepository.getUser().id)
                 .collection(collectionName)
     }

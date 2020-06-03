@@ -4,6 +4,6 @@ import com.google.firebase.firestore.CollectionReference
 
 abstract class FirestoreDataSource {
     abstract val collectionName: String
-    protected val userCollection = "users"
+    protected val userCollection = "user_data"
     abstract fun getCollection(): CollectionReference
 }

@@ -3,12 +3,11 @@ package com.munstein.gamemanager.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.munstein.gamemanager.base.BaseViewModel
 import com.munstein.gamemanager.base.Resource
-import com.munstein.gamemanager.interactor.games.GamesInteractor
 import com.munstein.gamemanager.entity.Games
+import com.munstein.gamemanager.interactor.games.IGamesInteractor
 import com.munstein.gamemanager.ui.mygames.GameColumn
-import java.lang.Exception
 
-class MyGamesViewModel(private val gamesInteractor: GamesInteractor) : BaseViewModel() {
+class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseViewModel() {
 
     val games by lazy { MutableLiveData<Resource<Games>>() }
     val deleteGame by lazy { MutableLiveData<Resource<Unit>>() }
