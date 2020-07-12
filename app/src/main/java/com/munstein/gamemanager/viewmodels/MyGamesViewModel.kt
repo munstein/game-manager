@@ -5,7 +5,7 @@ import com.munstein.gamemanager.base.BaseViewModel
 import com.munstein.gamemanager.base.Resource
 import com.munstein.gamemanager.entity.Games
 import com.munstein.gamemanager.interactor.games.IGamesInteractor
-import com.munstein.gamemanager.ui.mygames.GameColumn
+import com.munstein.gamemanager.ui.mygames.GameColumnEnum
 
 class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseViewModel() {
 
@@ -23,19 +23,19 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
         }
     }
 
-    suspend fun removeGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumn) {
+    suspend fun removeGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumnEnum) {
         try {
             deleteGame.postValue(Resource.loading())
             when (column) {
-                GameColumn.HAVE -> {
+                GameColumnEnum.HAVE -> {
                     gamesInteractor.deleteHaveGame(games, gameTitle, platformTitle)
                 }
 
-                GameColumn.WANT -> {
+                GameColumnEnum.WANT -> {
                     gamesInteractor.deleteWantGame(games, gameTitle, platformTitle)
                 }
 
-                GameColumn.PLAYING -> {
+                GameColumnEnum.PLAYING -> {
                     gamesInteractor.deletePlayingGame(games, gameTitle, platformTitle)
                 }
             }
@@ -46,19 +46,19 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
 
     }
 
-    suspend fun addGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumn) {
+    suspend fun addGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumnEnum) {
         try {
             addGame.postValue(Resource.loading())
             when (column) {
-                GameColumn.HAVE -> {
+                GameColumnEnum.HAVE -> {
                     gamesInteractor.addHaveGame(games, gameTitle, platformTitle)
                 }
 
-                GameColumn.WANT -> {
+                GameColumnEnum.WANT -> {
                     gamesInteractor.addWantGame(games, gameTitle, platformTitle)
                 }
 
-                GameColumn.PLAYING -> {
+                GameColumnEnum.PLAYING -> {
                     gamesInteractor.addPlayingGame(games, gameTitle, platformTitle)
                 }
             }

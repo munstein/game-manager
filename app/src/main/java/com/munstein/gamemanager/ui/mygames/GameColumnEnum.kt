@@ -1,5 +1,5 @@
 package com.munstein.gamemanager.ui.mygames
 
-enum class GameColumn {
+enum class GameColumnEnum {
     HAVE, PLAYING, WANT
 }
