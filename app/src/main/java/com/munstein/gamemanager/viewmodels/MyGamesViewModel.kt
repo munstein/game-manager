@@ -46,9 +46,10 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
         }
     }
 
-    suspend fun addGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumnEnum) {
+    suspend fun addGame(gameTitle: String, platformTitle: String, column: GameColumnEnum) {
         try {
             addGame.postValue(Resource.loading())
+            val games = games.value?.data ?: Games()
             when (column) {
                 GameColumnEnum.HAVE -> {
                     gamesInteractor.addHaveGame(games, gameTitle, platformTitle)

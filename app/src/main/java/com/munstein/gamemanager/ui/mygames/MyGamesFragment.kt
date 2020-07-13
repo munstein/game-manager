@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.munstein.gamemanager.extensions.visibleIf
 import androidx.fragment.app.Fragment
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.extensions.setLinearLayoutManagerAndMargins
@@ -15,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_my_games.*
 class MyGamesFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_my_games, container, false)
     }
@@ -29,6 +30,7 @@ class MyGamesFragment : Fragment() {
         fragment_my_games_rv.adapter = GamesAdapter(data.games) {
             data.onItemRemoveClick.onItemRemoveClick(it)
         }
+        fragment_my_games_txt_empty.visibleIf(data.games.isEmpty())
     }
 
     companion object {

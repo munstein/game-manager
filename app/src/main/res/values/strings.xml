@@ -1,24 +1,29 @@
 <resources>
     <string name="app_name">Gage</string>
     <string name="app_name_lowercase">gage</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_logout">Logout</string>
-    <string name="login">Login</string>
-    <string name="error">Error</string>
-    <string name="login_error">Try again later. It\'s probably Google\'s fault though. </string>
-    <string name="home">Home</string>
-    <string name="ok">Ok</string>
-    <string name="cancel">Cancel</string>
+    <string name="action_settings">settings</string>
+    <string name="action_logout">logout</string>
+    <string name="login">login</string>
+    <string name="error">error</string>
+    <string name="login_error">try again later. it\'s probably Google\'s fault though. </string>
+    <string name="home">home</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
     <string name="my_games">MyGamesActivity</string>
-    <string name="empty_state_message">No platforms found. \n Tap the "+" to add one.</string>
+    <string name="empty_state_platform_message">no platforms found. \n tap the ""+"" to add one.</string>
+    <string name="empty_state_game_message">no games found. \n tap the ""+ add game"" to add one.</string>
 
     <string name="have">have</string>
     <string name="want">want</string>
     <string name="playing">playing</string>
 
     <!--Dialog -->
-    <string name="dialog_add_platform">Add platform</string>
-    <string name="dialog_remove_platform">Remove platform?</string>
+    <!-- platform -->
+    <string name="dialog_add_platform">add platform</string>
+    <string name="dialog_remove_platform">remove platform?</string>
+    <!-- game -->
+    <string name="dialog_add_game">add game</string>
+    <string name="dialog_remove_game">remove game?</string>
 
     <!-- WTF -->
     <string name="wtf">wtf</string>

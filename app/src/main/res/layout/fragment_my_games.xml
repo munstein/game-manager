@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mygames.MyGamesFragment"
-    tools:showIn="@layout/activity_my_games">
+    tools:context=".ui.mygames.MyGamesFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_my_games_txt_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/empty_state_game_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_my_games_rv"

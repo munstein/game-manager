@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.ResourceState
+import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.entity.Games
 import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.viewmodels.MyGamesViewModel
@@ -15,12 +16,14 @@ import kotlinx.android.synthetic.main.activity_my_games.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyGamesActivity : AppCompatActivity() {
 
     private val platform by lazy { intent.getParcelableExtra(PLATFORM_EXTRA) as Platform }
     private val viewModel: MyGamesViewModel by viewModel()
+    private val dialogBuilder: IDialogBuilder by inject()
 
     companion object {
         const val PLATFORM_EXTRA = "PLATFORM_EXTRA"
@@ -36,6 +39,13 @@ class MyGamesActivity : AppCompatActivity() {
         setupUI()
         setupObservers()
         loadGames()
+        setupEvents()
+    }
+
+    private fun setupEvents() {
+        my_games_fab.setOnClickListener {
+            showAddPlatformDialog()
+        }
     }
 
     private fun setupUI() {
@@ -58,8 +68,8 @@ class MyGamesActivity : AppCompatActivity() {
         TabLayoutMediator(my_games_tablayout, my_games_viewpager) { tab, position ->
             tab.text = when (position) {
                 0 -> getString(R.string.have)
-                1 -> getString(R.string.want)
-                2 -> getString(R.string.playing)
+                1 -> getString(R.string.playing)
+                2 -> getString(R.string.want)
                 else -> getString(R.string.wtf)
             }
         }.attach()
@@ -139,8 +149,24 @@ class MyGamesActivity : AppCompatActivity() {
         }
     }
 
+    private fun addGame(gameTitle: String, gameColumnEnum: GameColumnEnum) {
+        GlobalScope.launch {
+            viewModel.addGame(gameTitle, platform.name, gameColumnEnum)
+        }
+    }
+
+    private fun showAddPlatformDialog() {
+        dialogBuilder.displayTextInputDialog(this,
+                R.string.dialog_add_game,
+                R.string.dialog_add_game,
+                R.string.ok,
+                R.string.cancel) { input ->
+            addGame(input, GameColumnEnum.fromInt(my_games_tablayout.selectedTabPosition))
+        }
+    }
+
     private fun loadGames() {
-        GlobalScope.async {
+        GlobalScope.launch {
             viewModel.getGames(platform.name)
         }
     }

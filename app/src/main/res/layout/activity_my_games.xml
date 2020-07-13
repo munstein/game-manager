@@ -50,4 +50,15 @@
         app:tabIndicatorHeight="4dp"
         app:tabMode="fixed" />
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/my_games_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFF"
+        app:icon="@drawable/ic_add"
+        android:text="ADD game"
+        app:layout_constraintBottom_toTopOf="@id/my_games_tablayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
