@@ -1,6 +1,7 @@
 package com.munstein.gamemanager.ui.mygames
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -73,15 +74,15 @@ class MyGamesActivity : AppCompatActivity() {
         viewModel.games.observe(this, Observer {
             when (it.status) {
                 ResourceState.SUCCESS -> {
-                    hideLoading()
+                    hideLoadingShowViewPager()
                     displayGames(it.data)
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowViewPager()
                     showOnLoadGamesError()
                 }
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideViewPager()
                 }
             }
         })
@@ -91,23 +92,23 @@ class MyGamesActivity : AppCompatActivity() {
                     loadGames()
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowViewPager()
                 }
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideViewPager()
                 }
             }
         })
         viewModel.deleteGame.observe(this, Observer {
             when (it.status) {
                 ResourceState.SUCCESS -> {
-                    hideLoading()
+                    hideLoadingShowViewPager()
                 }
                 ResourceState.ERROR -> {
-                    hideLoading()
+                    hideLoadingShowViewPager()
                 }
                 ResourceState.LOADING -> {
-                    showLoading()
+                    showLoadingHideViewPager()
                 }
             }
         })
@@ -119,10 +120,14 @@ class MyGamesActivity : AppCompatActivity() {
         }
     }
 
-    private fun hideLoading() {
+    private fun hideLoadingShowViewPager() {
+        my_games_progress.hide()
+        my_games_viewpager.visibility = View.VISIBLE
     }
 
-    private fun showLoading() {
+    private fun showLoadingHideViewPager() {
+        my_games_progress.show()
+        my_games_viewpager.visibility = View.GONE
     }
 
     private fun showOnLoadGamesError() {
