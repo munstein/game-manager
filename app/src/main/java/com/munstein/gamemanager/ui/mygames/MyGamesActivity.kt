@@ -92,7 +92,6 @@ class MyGamesActivity : AppCompatActivity() {
                 }
                 ResourceState.ERROR -> {
                     hideLoading()
-
                 }
                 ResourceState.LOADING -> {
                     showLoading()
@@ -103,7 +102,6 @@ class MyGamesActivity : AppCompatActivity() {
             when (it.status) {
                 ResourceState.SUCCESS -> {
                     hideLoading()
-
                 }
                 ResourceState.ERROR -> {
                     hideLoading()
@@ -122,15 +120,12 @@ class MyGamesActivity : AppCompatActivity() {
     }
 
     private fun hideLoading() {
-
     }
 
     private fun showLoading() {
-
     }
 
     private fun showOnLoadGamesError() {
-
     }
 
     private fun removeGame(gameTitle: String, gameColumnEnum: GameColumnEnum) {

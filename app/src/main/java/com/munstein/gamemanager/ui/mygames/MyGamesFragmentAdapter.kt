@@ -7,9 +7,9 @@ import com.munstein.gamemanager.entity.Games
 import com.munstein.gamemanager.exceptions.InvalidMyGamesFragmentAdapterIndexException
 
 class MyGamesFragmentAdapter(
-        activity: AppCompatActivity,
-        private val games: Games,
-        private val onItemRemoveAction: (String, GameColumnEnum) -> Unit
+    activity: AppCompatActivity,
+    private val games: Games,
+    private val onItemRemoveAction: (String, GameColumnEnum) -> Unit
 ) :
         FragmentStateAdapter(activity) {
 

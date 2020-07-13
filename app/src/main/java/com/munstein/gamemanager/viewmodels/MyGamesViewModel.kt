@@ -44,7 +44,6 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
         } catch (x: Exception) {
             deleteGame.postValue(Resource.error(x))
         }
-
     }
 
     suspend fun addGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumnEnum) {
@@ -68,5 +67,4 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
             addGame.postValue(Resource.error(x))
         }
     }
-
 }

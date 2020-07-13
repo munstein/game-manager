@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.fragment_my_games.*
 class MyGamesFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_my_games, container, false)
     }
