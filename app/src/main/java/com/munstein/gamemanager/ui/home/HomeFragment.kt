@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
 import com.munstein.gamemanager.base.ResourceState
-import com.munstein.gamemanager.custom.HorizontalMarginDecoration
-import com.munstein.gamemanager.custom.VerticalMarginDecorator
 import com.munstein.gamemanager.dialog.IDialogBuilder
 import com.munstein.gamemanager.entity.Platform
+import com.munstein.gamemanager.extensions.setLinearLayoutManagerAndMargins
 import com.munstein.gamemanager.ui.login.LoginActivity
 import com.munstein.gamemanager.ui.mygames.MyGamesActivity
 import com.munstein.gamemanager.viewmodels.HomeViewModel
@@ -27,9 +25,9 @@ class HomeFragment : BaseFragment() {
     private val dialogBuilder: IDialogBuilder by inject()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -175,12 +173,8 @@ class HomeFragment : BaseFragment() {
         fragment_home_recycler.visibility = View.VISIBLE
     }
 
-    private fun setupRecyclerView() {
-        val recyclerMargin = resources.getDimension(R.dimen.app_margin).toInt()
-        fragment_home_recycler.layoutManager = LinearLayoutManager(context!!)
-        fragment_home_recycler.addItemDecoration(HorizontalMarginDecoration(recyclerMargin))
-        fragment_home_recycler.addItemDecoration(VerticalMarginDecorator(recyclerMargin))
-    }
+    private fun setupRecyclerView() =
+            fragment_home_recycler.setLinearLayoutManagerAndMargins()
 
     private fun setupAdapter(platforms: List<Platform>) {
         val adapter = PlatformsAdapter(platforms, ::navigateToMyGamesActivity, ::showRemovePlatformDialog)

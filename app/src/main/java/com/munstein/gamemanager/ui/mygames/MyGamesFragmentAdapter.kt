@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.munstein.gamemanager.entity.Games
+import com.munstein.gamemanager.exceptions.InvalidMyGamesFragmentAdapterIndexException
 
 class MyGamesFragmentAdapter(
-    activity: AppCompatActivity,
-    private val games: Games
+        activity: AppCompatActivity,
+        private val games: Games,
+        private val onItemRemoveAction: (String, GameColumnEnum) -> Unit
 ) :
         FragmentStateAdapter(activity) {
 
@@ -18,21 +20,33 @@ class MyGamesFragmentAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        val gamesList =
+        val myGamesFragmentData =
                 when (position) {
-                    0 -> {
-                        games.have
+                    GameColumnEnum.HAVE.value -> {
+                        MyGamesFragmentData(GameColumnEnum.HAVE, games.have, object : MyGamesFragmentActions {
+                            override fun onItemRemoveClick(title: String) {
+                                onItemRemoveAction(title, GameColumnEnum.HAVE)
+                            }
+                        })
                     }
-                    1 -> {
-                        games.playing
+                    GameColumnEnum.PLAYING.value -> {
+                        MyGamesFragmentData(GameColumnEnum.PLAYING, games.playing, object : MyGamesFragmentActions {
+                            override fun onItemRemoveClick(title: String) {
+                                onItemRemoveAction(title, GameColumnEnum.PLAYING)
+                            }
+                        })
                     }
-                    2 -> {
-                        games.want
+                    GameColumnEnum.WANT.value -> {
+                        MyGamesFragmentData(GameColumnEnum.WANT, games.want, object : MyGamesFragmentActions {
+                            override fun onItemRemoveClick(title: String) {
+                                onItemRemoveAction(title, GameColumnEnum.WANT)
+                            }
+                        })
                     }
                     else -> {
-                        arrayListOf()
+                        throw InvalidMyGamesFragmentAdapterIndexException()
                     }
                 }
-        return MyGamesFragment.newInstance(gamesList)
+        return MyGamesFragment.newInstance(myGamesFragmentData)
     }
 }

@@ -23,9 +23,10 @@ class MyGamesViewModel(private val gamesInteractor: IGamesInteractor) : BaseView
         }
     }
 
-    suspend fun removeGame(games: Games, gameTitle: String, platformTitle: String, column: GameColumnEnum) {
+    suspend fun removeGame(gameTitle: String, platformTitle: String, column: GameColumnEnum) {
         try {
             deleteGame.postValue(Resource.loading())
+            val games = games.value?.data ?: Games()
             when (column) {
                 GameColumnEnum.HAVE -> {
                     gamesInteractor.deleteHaveGame(games, gameTitle, platformTitle)

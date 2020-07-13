@@ -10,7 +10,6 @@ import com.munstein.gamemanager.base.ResourceState
 import com.munstein.gamemanager.entity.Games
 import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.viewmodels.MyGamesViewModel
-
 import kotlinx.android.synthetic.main.activity_my_games.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -20,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MyGamesActivity : AppCompatActivity() {
 
     private val platform by lazy { intent.getParcelableExtra(PLATFORM_EXTRA) as Platform }
-
     private val viewModel: MyGamesViewModel by viewModel()
 
     companion object {
@@ -46,7 +44,7 @@ class MyGamesActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager(games: Games) {
-        val adapter = MyGamesFragmentAdapter(this, games)
+        val adapter = MyGamesFragmentAdapter(this, games, ::removeGame)
         my_games_viewpager.adapter = adapter
     }
 
@@ -76,6 +74,7 @@ class MyGamesActivity : AppCompatActivity() {
             when (it.status) {
                 ResourceState.SUCCESS -> {
                     hideLoading()
+                    displayGames(it.data)
                 }
                 ResourceState.ERROR -> {
                     hideLoading()
@@ -116,6 +115,12 @@ class MyGamesActivity : AppCompatActivity() {
         })
     }
 
+    private fun displayGames(data: Games?) {
+        data?.let {
+            setupViewPager(it)
+        }
+    }
+
     private fun hideLoading() {
 
     }
@@ -126,6 +131,12 @@ class MyGamesActivity : AppCompatActivity() {
 
     private fun showOnLoadGamesError() {
 
+    }
+
+    private fun removeGame(gameTitle: String, gameColumnEnum: GameColumnEnum) {
+        GlobalScope.launch {
+            viewModel.removeGame(platform.name, gameTitle, gameColumnEnum)
+        }
     }
 
     private fun loadGames() {
