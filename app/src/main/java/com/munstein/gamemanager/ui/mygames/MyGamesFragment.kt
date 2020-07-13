@@ -1,7 +1,6 @@
 package com.munstein.gamemanager.ui.mygames
 
 import android.os.Bundle
-import android.os.Parcel
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.munstein.gamemanager.extensions.setLinearLayoutManagerAndMargins
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 import kotlinx.android.synthetic.main.fragment_my_games.*
-import java.io.Serializable
 
 class MyGamesFragment : Fragment() {
 
@@ -27,11 +25,10 @@ class MyGamesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val data = arguments?.get(MY_GAMES_FRAGMENT_DATA_ARG) as MyGamesFragmentData
-        val adapter = GamesAdapter(data.games) {
+        fragment_my_games_rv.setLinearLayoutManagerAndMargins()
+        fragment_my_games_rv.adapter = GamesAdapter(data.games) {
             data.onItemRemoveClick.onItemRemoveClick(it)
         }
-        fragment_my_games_rv.setLinearLayoutManagerAndMargins()
-        fragment_my_games_rv.adapter = adapter
     }
 
     companion object {
@@ -45,9 +42,7 @@ class MyGamesFragment : Fragment() {
             return fragment
         }
     }
-
 }
-
 
 @Parcelize
 data class MyGamesFragmentData(val columnEnum: GameColumnEnum, val games: List<String>, val onItemRemoveClick: @RawValue MyGamesFragmentActions) : Parcelable

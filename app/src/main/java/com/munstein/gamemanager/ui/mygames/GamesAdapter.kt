@@ -20,10 +20,4 @@ class GamesAdapter(private var items: List<String> = listOf(),
         holder.delete.setOnClickListener { onRemoveClick.invoke(item) }
         holder.title.text = item
     }
-
-    fun loadItems(items: List<String>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
-
 }
