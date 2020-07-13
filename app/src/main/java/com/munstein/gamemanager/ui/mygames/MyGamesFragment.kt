@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_my_games.*
 class MyGamesFragment : Fragment() {
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_my_games, container, false)
     }
@@ -37,8 +37,9 @@ class MyGamesFragment : Fragment() {
         const val MY_GAMES_FRAGMENT_DATA_ARG = "MY_GAMES_FRAGMENT_DATA_ARG"
 
         fun newInstance(myGamesFragmentData: MyGamesFragmentData): Fragment {
-            val bundle = Bundle()
-            bundle.putParcelable(MY_GAMES_FRAGMENT_DATA_ARG, myGamesFragmentData)
+            val bundle = Bundle().apply {
+                putParcelable(MY_GAMES_FRAGMENT_DATA_ARG, myGamesFragmentData)
+            }
             val fragment = MyGamesFragment()
             fragment.arguments = bundle
             return fragment

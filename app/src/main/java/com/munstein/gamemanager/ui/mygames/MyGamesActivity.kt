@@ -14,7 +14,6 @@ import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.viewmodels.MyGamesViewModel
 import kotlinx.android.synthetic.main.activity_my_games.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
