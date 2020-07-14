@@ -56,7 +56,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFF"
         app:icon="@drawable/ic_add"
-        android:text="ADD game"
+        android:text="@string/add_game"
+        android:textAllCaps="false"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toTopOf="@id/my_games_tablayout"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />

@@ -12,6 +12,7 @@
     <string name="my_games">MyGamesActivity</string>
     <string name="empty_state_platform_message">no platforms found. \n tap the ""+"" to add one.</string>
     <string name="empty_state_game_message">no games found. \n tap the ""+ add game"" to add one.</string>
+    <string name="my_games_at">my games @ [%1$s]</string>
 
     <string name="have">have</string>
     <string name="want">want</string>
@@ -27,4 +28,6 @@
 
     <!-- WTF -->
     <string name="wtf">wtf</string>
+    <string name="action_about">about</string>
+    <string name="add_game">add game</string>
 </resources>

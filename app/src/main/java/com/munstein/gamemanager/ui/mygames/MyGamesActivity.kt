@@ -48,7 +48,7 @@ class MyGamesActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        my_games_txt_title.text = platform.name
+        my_games_txt_title.text = getString(R.string.my_games_at, platform.name)
         setupViewPager(Games())
         setupTabs()
     }
