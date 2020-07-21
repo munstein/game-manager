@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".ui.home.HomeFragment"
     tools:showIn="@layout/activity_home">
 
@@ -39,14 +38,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/app_margin"
-        android:layout_marginBottom="@dimen/app_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="32dp"
+        android:fadingEdgeLength="@dimen/fading_rv_margin"
+        android:layoutAnimation="@anim/layout_animation_up_to_down"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_home_txt_title"
-        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/holder_platform" />
 
     <androidx.appcompat.widget.AppCompatTextView

@@ -96,8 +96,8 @@ class HomeFragment : BaseFragment() {
                     showLoadingHideRecyclerView()
                 }
                 ResourceState.SUCCESS -> {
-                    displayPlatforms(it.data ?: listOf())
                     hideLoadingShowRecyclerView()
+                    displayPlatforms(it.data ?: listOf())
                 }
                 ResourceState.ERROR -> {
                     hideLoadingShowRecyclerView()
@@ -152,8 +152,8 @@ class HomeFragment : BaseFragment() {
         if (platforms.isEmpty()) {
             showEmptyState()
         } else {
-            setupAdapter(platforms)
             hideEmptyState()
+            setupAdapter(platforms)
         }
     }
 
@@ -164,12 +164,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun showLoadingHideRecyclerView() {
-        fragment_home_progress.show()
-        fragment_home_recycler.visibility = View.GONE
+        fragment_home_progress.visibility = View.VISIBLE
+        fragment_home_recycler.visibility = View.INVISIBLE
     }
 
     private fun hideLoadingShowRecyclerView() {
-        fragment_home_progress.hide()
+        fragment_home_progress.visibility = View.INVISIBLE
         fragment_home_recycler.visibility = View.VISIBLE
     }
 

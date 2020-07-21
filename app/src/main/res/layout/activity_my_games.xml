@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.mygames.MyGamesActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,13 +53,13 @@
         android:id="@+id/my_games_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:backgroundTint="#FFF"
-        app:icon="@drawable/ic_add"
         android:text="@string/add_game"
         android:textAllCaps="false"
         app:borderWidth="0dp"
+        app:icon="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@id/my_games_tablayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
