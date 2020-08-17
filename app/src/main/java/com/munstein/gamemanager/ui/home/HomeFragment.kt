@@ -1,19 +1,28 @@
 package com.munstein.gamemanager.ui.home
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
+import android.view.*
+import androidx.lifecycle.Observer
 import com.munstein.gamemanager.R
 import com.munstein.gamemanager.base.BaseFragment
+import com.munstein.gamemanager.base.ResourceState
+import com.munstein.gamemanager.dialog.IDialogBuilder
+import com.munstein.gamemanager.entity.Platform
+import com.munstein.gamemanager.extensions.setLinearLayoutManagerAndMargins
+import com.munstein.gamemanager.ui.login.LoginActivity
+import com.munstein.gamemanager.ui.mygames.MyGamesActivity
 import com.munstein.gamemanager.viewmodels.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
+class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModel()
+    private val dialogBuilder: IDialogBuilder by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,51 +37,177 @@ class HomeFragment : BaseFragment(), PlatformViewHolder.OnHolderClick {
         init()
     }
 
-    // TODO implement
-    override fun onClick(platformTitle: String) {
+    private fun init() {
+        initEvents()
+        initUI()
+        initObservables()
+        hideEmptyState()
+        getPlatforms()
+    }
+
+    private fun initEvents() {
+        (activity as HomeActivity).setOnFabClickListener {
+            showAddPlatformDialog()
+        }
+        (activity as HomeActivity).setOnLogoutOptionSelected {
+            homeViewModel.logout()
+        }
+    }
+
+    private fun initUI() {
+        setupRecyclerView()
+    }
+
+    private fun initObservables() {
+        homeViewModel.insert.observe(this, Observer {
+            when (it.status) {
+                ResourceState.LOADING -> {
+                    showLoadingHideRecyclerView()
+                }
+                ResourceState.SUCCESS -> {
+                    getPlatforms()
+                }
+                ResourceState.ERROR -> {
+                    hideLoadingShowRecyclerView()
+                    it.error?.message?.let { message ->
+                        showOnErrorDialog(message)
+                    }
+                }
+            }
+        })
+
+        homeViewModel.remove.observe(this, Observer {
+            when (it.status) {
+                ResourceState.LOADING -> {
+                    showLoadingHideRecyclerView()
+                }
+                ResourceState.SUCCESS -> {
+                    getPlatforms()
+                }
+                ResourceState.ERROR -> {
+                    hideLoadingShowRecyclerView()
+                }
+            }
+        })
+
+        homeViewModel.platforms.observe(this, Observer {
+            when (it.status) {
+                ResourceState.LOADING -> {
+                    showLoadingHideRecyclerView()
+                }
+                ResourceState.SUCCESS -> {
+                    hideLoadingShowRecyclerView()
+                    displayPlatforms(it.data ?: listOf())
+                }
+                ResourceState.ERROR -> {
+                    hideLoadingShowRecyclerView()
+                }
+            }
+        })
+
+        homeViewModel.logout.observe(this, Observer {
+            navigateToLoginActivity()
+        })
     }
 
     private fun showAddPlatformDialog() {
         context?.let {
-            MaterialDialog(it)
-                    .title(R.string.dialog_add_platform)
-                    .positiveButton(R.string.ok)
-                    .negativeButton(R.string.cancel)
-                    .input { _, text ->
-                        addPlatform(text.toString())
-                    }
-                    .show()
+            dialogBuilder.displayTextInputDialog(it,
+                    R.string.dialog_add_platform,
+                    R.string.dialog_add_platform,
+                    R.string.ok,
+                    R.string.cancel) { input ->
+                addPlatform(input)
+            }
         }
     }
 
-    // TODO implement
     private fun addPlatform(platform: String) {
-    }
-
-    private fun showRemovePlatformDialog() {
-        context?.let {
-            MaterialDialog(it)
-                    .title(R.string.dialog_remove_platform)
-                    .positiveButton(R.string.ok) { }
-                    .negativeButton(R.string.cancel)
-                    .show()
+        GlobalScope.launch {
+            homeViewModel.insertPlatform(platform)
         }
     }
 
-    private fun init() {
-        ui()
-        events()
+    private fun showRemovePlatformDialog(platform: Platform) {
+        context?.let {
+            dialogBuilder.displayConfirmationDialog(it,
+                    R.string.dialog_remove_platform,
+                    R.string.dialog_remove_platform,
+                    R.string.ok,
+                    R.string.cancel) {
+                removePlatform(platform)
+            }
+        }
     }
 
-    // TODO implement
-    private fun events() {
+    private fun showOnErrorDialog(message: String) {
+        context?.let {
+            dialogBuilder.displayErrorDialog(it,
+                    message,
+                    R.string.ok)
+        }
     }
 
-    // TODO implement
-    private fun ui() {
+    private fun displayPlatforms(platforms: List<Platform>) {
+        if (platforms.isEmpty()) {
+            showEmptyState()
+        } else {
+            hideEmptyState()
+            setupAdapter(platforms)
+        }
     }
 
-    // TODO implement
-    private fun observables() {
+    private fun getPlatforms() {
+        GlobalScope.launch {
+            homeViewModel.getPlatforms()
+        }
+    }
+
+    private fun showLoadingHideRecyclerView() {
+        fragment_home_progress.visibility = View.VISIBLE
+        fragment_home_recycler.visibility = View.INVISIBLE
+    }
+
+    private fun hideLoadingShowRecyclerView() {
+        fragment_home_progress.visibility = View.INVISIBLE
+        fragment_home_recycler.visibility = View.VISIBLE
+    }
+
+    private fun setupRecyclerView() =
+            fragment_home_recycler.setLinearLayoutManagerAndMargins()
+
+    private fun setupAdapter(platforms: List<Platform>) {
+        val adapter = PlatformsAdapter(platforms, ::navigateToMyGamesActivity, ::showRemovePlatformDialog)
+        fragment_home_recycler.adapter = adapter
+    }
+
+    private fun navigateToMyGamesActivity(platform: Platform) {
+        context?.let {
+            val intent = Intent(it, MyGamesActivity::class.java)
+            intent.putExtra(MyGamesActivity.PLATFORM_EXTRA, platform)
+            startActivity(intent)
+        }
+    }
+
+    private fun navigateToLoginActivity() {
+        context?.let {
+            val intent = Intent(it, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+
+    private fun removePlatform(platform: Platform) {
+        GlobalScope.launch {
+            homeViewModel.removePlatform(platform.name)
+        }
+    }
+
+    private fun showEmptyState() {
+        fragment_home_txt_empty_state_message.visibility = View.VISIBLE
+    }
+
+    private fun hideEmptyState() {
+        fragment_home_txt_empty_state_message.visibility = View.GONE
     }
 }

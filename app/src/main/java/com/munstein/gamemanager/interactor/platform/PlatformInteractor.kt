@@ -1,8 +1,6 @@
 package com.munstein.gamemanager.interactor.platform
 
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentReference
-import com.munstein.gamemanager.model.Platform
+import com.munstein.gamemanager.entity.Platform
 import com.munstein.gamemanager.repository.platform.IPlatformRepository
 import kotlinx.coroutines.Deferred
 
@@ -12,11 +10,10 @@ class PlatformInteractor(private val repository: IPlatformRepository) : IPlatfor
     }
 
     override suspend fun removePlatform(name: String): Deferred<Void> {
-        TODO("Not yet implemented")
+        return repository.removePlatform(name)
     }
 
     override suspend fun getPlatforms(): Deferred<List<Platform>> {
-        TODO("Not yet implemented")
+        return repository.getPlatforms()
     }
-
 }

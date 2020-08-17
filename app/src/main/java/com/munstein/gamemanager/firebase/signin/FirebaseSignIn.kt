@@ -22,8 +22,8 @@ class FirebaseSignIn(val context: Context) : IFirebaseSignIn {
                 .requestIdToken("320641422271-6fr92pm1c6q385i8u2h92s1t6i6j21di.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
-        val mGoogleSignInClient = GoogleSignIn.getClient(context, gso)
-        return mGoogleSignInClient.signInIntent
+        val googleSignInClient = GoogleSignIn.getClient(context, gso)
+        return googleSignInClient.signInIntent
     }
 
     override fun getSignedInAccount(): FirebaseUser? {

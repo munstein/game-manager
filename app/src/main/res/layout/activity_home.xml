@@ -14,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabCradleMargin="8dp"
-        app:fabCradleVerticalOffset="0dp" />
+        app:fabCradleMargin="0dp"
+        app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/home_fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:borderWidth="0dp"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@id/home_bottom_bar"
         app:srcCompat="@drawable/ic_add" />
 
