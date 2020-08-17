@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_home_txt_title"
-        tools:listitem="@layout/holder_platform" />
+        tools:listitem="@layout/holder_generic" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_home_txt_empty_state_message"
