@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MyGamesActivity : AppCompatActivity() {
 
-    private val platform by lazy { intent.getParcelableExtra(PLATFORM_EXTRA) as Platform }
+    private lateinit var platform : Platform
     private val viewModel: MyGamesViewModel by viewModel()
     private val dialogBuilder: IDialogBuilder by inject()
 
@@ -35,6 +35,7 @@ class MyGamesActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        platform =  intent.getParcelableExtra(PLATFORM_EXTRA)!!
         setupUI()
         setupObservers()
         loadGames()
@@ -150,7 +151,7 @@ class MyGamesActivity : AppCompatActivity() {
 
     private fun addGame(gameTitle: String, gameColumnEnum: GameColumnEnum) {
         GlobalScope.launch {
-            viewModel.addGame(gameTitle, platform.name, gameColumnEnum)
+            viewModel.addGame(gameTitle, platform?.name, gameColumnEnum)
         }
     }
 
@@ -166,7 +167,7 @@ class MyGamesActivity : AppCompatActivity() {
 
     private fun loadGames() {
         GlobalScope.launch {
-            viewModel.getGames(platform.name)
+            viewModel.getGames(platform?.name)
         }
     }
 }
