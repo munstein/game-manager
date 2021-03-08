@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileOptions {
@@ -79,6 +80,8 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:input:2.0.0-beta4'
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.3"
     //Firebase stuff
     implementation 'com.google.firebase:firebase-core:18.0.2'
     implementation 'com.google.firebase:firebase-firestore:22.1.1'

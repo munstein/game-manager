@@ -62,7 +62,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun observers() {
-        loginViewModel.userIsSignedIn.observe(this, Observer {
+        loginViewModel.userIsSignedIn.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 navigateToHome()
             } else {
